@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   header.h                                           :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/19 00:09:41 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/15 22:06:50 by gpladet          ###   ########.fr       */
+/*   Created: 2021/03/15 21:44:55 by gpladet           #+#    #+#             */
+/*   Updated: 2021/03/15 21:59:20 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_H
-# define HEADER_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-# include "../libft/include/libft.h"
-# include "get_next_line.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
-# define TRUE 1
-# define FALSE 0
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+# define FD_SIZE 10240
 
-typedef struct		s_stack
-{
-	int				value;
-	struct s_stack	*next;
-}					t_stack;
-
-/*
-** stack.c
-*/
-t_stack				*free_stack(t_stack *stack);
-t_stack				*push_stack(t_stack *stack, int value);
-void				print_stack(t_stack *stack);
+int		get_next_line(int fd, char **line);
 
 #endif

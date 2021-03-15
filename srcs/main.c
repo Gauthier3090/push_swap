@@ -6,37 +6,13 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:09:21 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/19 13:53:20 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/15 22:11:43 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/header.h"
 
-t_stack		*push_stack(t_stack	*stack, int value)
-{
-	t_stack	*element;
-
-	if (!(element = ft_calloc(1, sizeof(t_stack))))
-		return (NULL);
-	element->value = value;
-	element->next = stack;
-	return (element);
-}
-
-void		print_stack(t_stack *stack)
-{
-	int	i;
-
-	i = -1;
-	while (stack->next)
-	{
-		ft_putnbr_fd(stack->value, 1);
-		ft_putchar_fd('\n', 1);
-		stack = stack->next;
-	}
-}
-
-int			check_args(char	**argv)
+int			check_args(char **argv)
 {
 	int	i;
 	int	j;
@@ -57,9 +33,10 @@ int			check_args(char	**argv)
 int			main(int argc, char **argv)
 {
 	t_stack	*a;
+	char	*line;
 	int		i;
 
-	if (argc > 0)
+	if (argc > 1)
 	{
 		if (!check_args(argv))
 			ft_putendl_fd("Error", 1);
@@ -71,11 +48,16 @@ int			main(int argc, char **argv)
 			while (argv[++i])
 			{
 				if (!(a = push_stack(a, ft_atoi(argv[i]))))
+				{
+					a = free_stack(a);
 					return (EXIT_FAILURE);
+				}
 			}
 			print_stack(a);
+			a = free_stack(a);
 		}
+		while (get_next_line(0, &line))
+			free(line);
 	}
-	getchar();
 	return (EXIT_SUCCESS);
 }
