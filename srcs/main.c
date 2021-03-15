@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:09:21 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/20 22:39:43 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/16 00:28:24 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ t_stack	*init_stack(t_stack *a, char **argv)
 {
 	int	i;
 
-	if (!(a = ft_calloc(1, sizeof(t_stack))))
-		error_message(ERROR_CALLOC);
 	i = 0;
 	while (argv[++i])
 		a = push_stack(a, ft_atoi(argv[i]));
@@ -63,22 +61,30 @@ int		main(int argc, char **argv)
 	if (argc > 1)
 	{
 		if (!check_args(argv))
-			error_message(ERROR_CALLOC);
+			ft_putendl_fd("Error", 1);
 		else
-		{
 			a = init_stack(a, argv);
-			if (!(b = ft_calloc(1, sizeof(t_stack))))
-				error_message(ERROR_CALLOC);
-		}
+		display_stack(a, b);
 		while (get_next_line(0, &line))
 		{
 			if (!ft_strcmp("sa", line))
-				ft_swap(a);
+				a = ft_swap(a);
 			if (!ft_strcmp("sb", line))
+				b = ft_swap(b);
+			if (!ft_strcmp("ss", line))
+			{
+				ft_swap(a);
 				ft_swap(b);
+			}
+			if (!ft_strcmp("pa", line))
+				ft_push(&a, &b);
+			if (!ft_strcmp("pb", line))
+				ft_push(&b, &a);
 			free(line);
+			display_stack(a, b);
 		}
 		a = free_stack(a);
+		b = free_stack(b);
 	}
 	return (EXIT_SUCCESS);
 }

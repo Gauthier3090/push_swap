@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 22:03:55 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/20 21:20:51 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/16 00:24:50 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,17 @@ t_stack		*push_stack(t_stack *stack, int value)
 		error_message(ERROR_CALLOC);
 	element->value = value;
 	element->next = stack;
+	return (element);
+}
+
+t_stack		*pop_stack(t_stack *stack)
+{
+	t_stack *element;
+
+	if (!(element = ft_calloc(1, sizeof(t_stack))))
+		error_message(ERROR_CALLOC);
+	element = stack->next;
+	free(stack);
 	return (element);
 }
 

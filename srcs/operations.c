@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 21:18:34 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/20 22:40:43 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/16 00:27:46 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		ft_swap_value(t_stack *stack)
 	return (stack->value);
 }
 
-void	ft_swap(t_stack *stack)
+t_stack	*ft_swap(t_stack *stack)
 {
 	int		tmp;
 
@@ -28,4 +28,13 @@ void	ft_swap(t_stack *stack)
 	stack->value = ft_swap_value(stack);
 	stack = stack->next;
 	stack->value = tmp;
+	return (stack);
+}
+
+void	ft_push(t_stack **dest, t_stack **src)
+{
+	if (!*src)
+		return ;
+	*dest = push_stack(*dest, (*src)->value);
+	*src = pop_stack(*src);
 }
