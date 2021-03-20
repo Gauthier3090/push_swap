@@ -6,7 +6,7 @@
 #    By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/04 15:34:54 by gpladet           #+#    #+#              #
-#    Updated: 2021/03/15 22:09:43 by gpladet          ###   ########.fr        #
+#    Updated: 2021/03/20 21:32:07 by gpladet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ PATH_OBJ = objs/
 PATH_LIBFT = libft
 
 # List of sources
-SRCS = main.c get_next_line.c stack.c
+SRCS = get_next_line.c main.c operations.c print.c stack.c
 OBJS = ${addprefix ${PATH_OBJ}, ${SRCS:.c=.o}}
 INCS = ${addprefix ${PATH_INC}, header.h}
 
