@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:09:21 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/16 01:56:03 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/24 17:51:52 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,13 @@ int		main(int argc, char **argv)
 			}
 			if (!(ft_strcmp("rra", line)))
 				ft_reverse_rotate(a);
+			if (!(ft_strcmp("rrb", line)))
+				ft_reverse_rotate(b);
+			if (!(ft_strcmp("rrr", line)))
+			{
+				ft_reverse_rotate(a);
+				ft_reverse_rotate(b);
+			}
 			free(line);
 			display_stack(a, b);
 		}

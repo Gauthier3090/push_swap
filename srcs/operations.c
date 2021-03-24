@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 21:18:34 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/24 15:42:52 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/24 18:00:23 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,47 @@ void	ft_rotate(t_stack *stack)
 
 	if (!stack || ft_strlen_stack(stack) <= 1)
 		return ;
+	tmp = stack->value;
 	while (stack->next)
 	{
-		tmp = stack->value;
 		stack->value = stack->next->value;
-		stack->next->value = tmp;
 		stack = stack->next;
 	}
+	stack->value = tmp;
 }
 
 void	ft_reverse_rotate(t_stack *stack)
 {
-	int	i;
-	int	tmp;
+	t_stack	*element;
+	int		*tmp;
+	int		i;
 
 	if (!stack || ft_strlen_stack(stack) <= 1)
 		return ;
-	i = ft_strlen_stack(stack) - 1;
-	tmp = stack[i].value;
-	while (i > 0)
+	if (ft_strlen_stack(stack) == 2)
 	{
-		ft_putnbr_fd(stack[i].value, 1);
-		ft_putnbr_fd(tmp, 1);
-		stack[i].value = stack[i - 1].value;
-		i--;
+		ft_swap(stack);
+		return ;
 	}
-	stack[i].value = tmp;
+	if (!(tmp = ft_calloc(ft_strlen_stack(stack), sizeof(int))))
+		exit(EXIT_FAILURE);
+	i = -1;
+	tmp[++i] = stack->value;
+	element = stack->next;
+	while (element->next)
+	{
+		tmp[++i] = element->value;
+		element = element->next;
+	}
+	tmp[++i] = element->value;
+	stack->value = tmp[i];
+	i = -1;
+	stack = stack->next;
+	while (++i < ft_strlen_stack(stack))
+	{
+		stack->value = tmp[i];
+		stack = stack->next;
+	}
+	stack->value = tmp[i];
+	free(tmp);
 }
