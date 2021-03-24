@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:09:21 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/16 00:28:24 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/16 01:56:03 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ int		main(int argc, char **argv)
 		while (get_next_line(0, &line))
 		{
 			if (!ft_strcmp("sa", line))
-				a = ft_swap(a);
+				ft_swap(a);
 			if (!ft_strcmp("sb", line))
-				b = ft_swap(b);
+				ft_swap(b);
 			if (!ft_strcmp("ss", line))
 			{
 				ft_swap(a);
@@ -80,6 +80,17 @@ int		main(int argc, char **argv)
 				ft_push(&a, &b);
 			if (!ft_strcmp("pb", line))
 				ft_push(&b, &a);
+			if (!(ft_strcmp("ra", line)))
+				ft_rotate(a);
+			if (!(ft_strcmp("rb", line)))
+				ft_rotate(b);
+			if (!(ft_strcmp("rr", line)))
+			{
+				ft_rotate(a);
+				ft_rotate(b);
+			}
+			if (!(ft_strcmp("rra", line)))
+				ft_reverse_rotate(a);
 			free(line);
 			display_stack(a, b);
 		}

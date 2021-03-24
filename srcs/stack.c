@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 22:03:55 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/16 00:24:50 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/24 15:38:55 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_stack		*push_stack(t_stack *stack, int value)
 	if (!(element = ft_calloc(1, sizeof(t_stack))))
 		error_message(ERROR_CALLOC);
 	element->value = value;
-	element->next = stack;
+	element->next = stack;;
 	return (element);
 }
 
@@ -38,8 +38,6 @@ t_stack		*pop_stack(t_stack *stack)
 {
 	t_stack *element;
 
-	if (!(element = ft_calloc(1, sizeof(t_stack))))
-		error_message(ERROR_CALLOC);
 	element = stack->next;
 	free(stack);
 	return (element);
@@ -60,7 +58,7 @@ int			ft_strlen_stack(t_stack *stack)
 	int	i;
 
 	i = 0;
-	while (stack->next)
+	while (stack)
 	{
 		i++;
 		stack = stack->next;

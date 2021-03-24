@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:09:41 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/16 00:28:06 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/16 01:55:50 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ typedef struct		s_stack
 /*
 ** operations.c
 */
-t_stack				*ft_swap(t_stack *stack);
+void				ft_swap(t_stack *stack);
 void				ft_push(t_stack **dest, t_stack **src);
+void				ft_rotate(t_stack *stack);
+void				ft_reverse_rotate(t_stack *stack);
 
 /*
 ** print.c
