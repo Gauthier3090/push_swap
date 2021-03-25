@@ -6,11 +6,11 @@
 /*   By: gpladet <gpladet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 22:03:55 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/25 12:32:49 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:22:27 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/header.h"
+#include "../includes_checker/header.h"
 
 t_stack	*free_stack(t_stack *stack)
 {

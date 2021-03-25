@@ -6,11 +6,11 @@
 /*   By: gpladet <gpladet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 21:18:34 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/25 14:09:32 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:22:18 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/header.h"
+#include "../includes_checker/header.h"
 
 void	ft_swap(t_stack *stack)
 {

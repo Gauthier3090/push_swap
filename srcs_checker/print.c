@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
+/*   By: gpladet <gpladet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 21:12:48 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/15 23:59:34 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:22:22 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/header.h"
+#include "../includes_checker/header.h"
 
 void	error_message(char *message)
 {

@@ -6,11 +6,11 @@
 /*   By: gpladet <gpladet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:09:21 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/25 15:08:10 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:22:16 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/header.h"
+#include "../includes_checker/header.h"
 
 t_stack	*init_stack(t_stack *a, char **argv)
 {

@@ -6,11 +6,11 @@
 /*   By: gpladet <gpladet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:59:36 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/25 15:02:23 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:22:25 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/header.h"
+#include "../includes_checker/header.h"
 
 int	getinput(char **line)
 {

@@ -6,11 +6,11 @@
 /*   By: gpladet <gpladet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:48:30 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/25 14:29:53 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:22:30 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/header.h"
+#include "../includes_checker/header.h"
 
 long	ft_atol(const char *str)
 {
