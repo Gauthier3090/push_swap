@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+         #
+#    By: gpladet <gpladet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/04 15:34:54 by gpladet           #+#    #+#              #
-#    Updated: 2021/03/20 21:32:07 by gpladet          ###   ########.fr        #
+#    Updated: 2021/03/25 14:00:42 by gpladet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ PATH_OBJ = objs/
 PATH_LIBFT = libft
 
 # List of sources
-SRCS = get_next_line.c main.c operations.c print.c stack.c
+SRCS = check.c main.c operations.c print.c read.c stack.c utils.c
 OBJS = ${addprefix ${PATH_OBJ}, ${SRCS:.c=.o}}
 INCS = ${addprefix ${PATH_INC}, header.h}
 
@@ -33,9 +33,9 @@ COMP_INC = -I ${PATH_INC}
 RM = /bin/rm
 
 # Color and template code
-YELLOW = \e[38;5;184m
-GREEN = \e[38;5;46m
-RESET = \e[0m
+YELLOW = \033[01;33m
+GREEN = \033[01;32m
+RESET = \033[01;0m
 INFO = [${YELLOW}INFO${RESET}]
 SUCCESS = [${GREEN}OK${RESET}]
 

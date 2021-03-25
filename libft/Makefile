@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gpladet <gpladet.student.s19.be>           +#+  +:+       +#+         #
+#    By: gpladet <gpladet@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/09 11:55:40 by gpladet           #+#    #+#              #
-#    Updated: 2020/06/29 15:46:24 by gpladet          ###   ########.fr        #
+#    Updated: 2021/03/25 11:06:12 by gpladet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,9 +70,9 @@ OBJBONUS_NAME = $(SRCSBONUS:.c=.o)
 OBJ = $(addprefix $(PATH_OBJ), $(OBJ_NAME))
 OBJBONUS = $(addprefix $(PATH_OBJ), $(OBJBONUS_NAME))
 
-YELLOW = \e[38;5;184m
-GREEN = \e[38;5;46m
-RESET = \e[0m
+YELLOW = \033[01;33m
+GREEN = \033[01;32m
+RESET = \033[01;0m
 INFO = [${YELLOW}INFO${RESET}]
 SUCCESS = [${GREEN}OK${RESET}]
 
