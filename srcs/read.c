@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:59:36 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/25 14:29:26 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:02:23 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,42 +41,58 @@ int	getinput(char **line)
 	return (1);
 }
 
-void	ft_operations_more(char *line, t_stack **a, t_stack **b)
+int	ft_operations_more(char *line, t_stack **a, t_stack **b)
 {
 	if (!(ft_strcmp("rr", line)))
 	{
 		ft_rotate(*a);
 		ft_rotate(*b);
+		return (TRUE);
 	}
-	if (!(ft_strcmp("rra", line)))
+	else if (!(ft_strcmp("rra", line)))
+	{
 		ft_reverse_rotate(*a);
-	if (!(ft_strcmp("rrb", line)))
+		return (TRUE);
+	}
+	else if (!(ft_strcmp("rrb", line)))
+	{
 		ft_reverse_rotate(*b);
-	if (!(ft_strcmp("rrr", line)))
+		return (TRUE);
+	}
+	else if (!(ft_strcmp("rrr", line)))
 	{
 		ft_reverse_rotate(*a);
 		ft_reverse_rotate(*b);
+		return (TRUE);
 	}
+	return (FALSE);
 }
 
-void	ft_operations(char *line, t_stack **a, t_stack **b)
+int	ft_operations(char *line, t_stack **a, t_stack **b)
 {
 	if (!ft_strcmp("sa", line))
 		ft_swap(*a);
-	if (!ft_strcmp("sb", line))
+	else if (!ft_strcmp("sb", line))
 		ft_swap(*b);
-	if (!ft_strcmp("ss", line))
+	else if (!ft_strcmp("ss", line))
 	{
 		ft_swap(*a);
 		ft_swap(*b);
 	}
-	if (!ft_strcmp("pa", line))
+	else if (!ft_strcmp("pa", line))
 		ft_push(a, b);
-	if (!ft_strcmp("pb", line))
+	else if (!ft_strcmp("pb", line))
 		ft_push(b, a);
-	if (!(ft_strcmp("ra", line)))
+	else if (!(ft_strcmp("ra", line)))
 		ft_rotate(*a);
-	if (!(ft_strcmp("rb", line)))
+	else if (!(ft_strcmp("rb", line)))
 		ft_rotate(*b);
-	ft_operations_more(line, a, b);
+	else if (ft_operations_more(line, a, b))
+		return (TRUE);
+	else
+	{
+		ft_putendl_fd("Error", 1);
+		return (FALSE);
+	}
+	return (TRUE);
 }

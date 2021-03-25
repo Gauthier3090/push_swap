@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:09:41 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/25 14:01:35 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:00:17 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void				display_stack(t_stack *a, t_stack *b);
 ** read.c
 */
 int					getinput(char **line);
-void				ft_operations(char *line, t_stack **a, t_stack **b);
+int					ft_operations(char *line, t_stack **a, t_stack **b);
 
 /*
 ** stack.c

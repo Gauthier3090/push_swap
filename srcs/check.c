@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:11:20 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/25 12:26:47 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/25 14:52:24 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int	check_args(char **argv)
 		j = -1;
 		while (argv[i][++j])
 		{
+			if (argv[i][j] == '-' || argv[i][j] == '+')
+				j++;
 			if (!ft_isdigit(argv[i][j]))
 				return (FALSE);
 		}
