@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpladet <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gpladet <gpladet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 15:31:52 by gpladet           #+#    #+#             */
-/*   Updated: 2019/10/15 15:38:38 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:38:38 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,14 @@ static unsigned int	length_itoa(int n)
 	return (length);
 }
 
-char				*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char			*word;
 	unsigned int	i;
 	unsigned int	nb;
 
 	i = length_itoa(n);
-	if (!(word = ft_calloc(i + 1, sizeof(char))))
-		return (NULL);
+	word = ft_calloc(i + 1, sizeof(char));
 	if (n == 0)
 	{
 		word[0] = '0';

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpladet <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gpladet <gpladet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 12:50:38 by gpladet           #+#    #+#             */
-/*   Updated: 2019/10/23 09:47:23 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:42:08 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	count_words(char *s, char c)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -33,8 +33,8 @@ static int	count_words(char *s, char c)
 
 static int	size_words(char *s, char c)
 {
-	int i;
-	int size;
+	int	i;
+	int	size;
 
 	i = 0;
 	size = 0;
@@ -70,13 +70,13 @@ static char	**split_words(char *s, char c)
 	int		count;
 
 	count = count_words(s, c);
-	if (!(tab = ft_calloc(sizeof(char *), count + 1)))
-		return (NULL);
+	tab = ft_calloc(sizeof(char *), count + 1);
 	i = -1;
 	j = 0;
 	while (count > ++i)
 	{
-		if (!(tab[i] = ft_calloc(sizeof(char), size_words(&s[j], c) + 1)))
+		tab[i] = ft_calloc(sizeof(char), size_words(&s[j], c) + 1);
+		if (!tab[i])
 		{
 			free_tab(tab);
 			return (NULL);
@@ -90,13 +90,14 @@ static char	**split_words(char *s, char c)
 	return (tab);
 }
 
-char		**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**tab;
 
 	if (!s)
 		return (NULL);
-	if (!(tab = split_words((char *)s, c)))
+	tab = split_words((char *)s, c);
+	if (!tab)
 		return (NULL);
 	return (tab);
 }

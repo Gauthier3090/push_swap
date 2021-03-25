@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpladet <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gpladet <gpladet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 11:41:17 by gpladet           #+#    #+#             */
-/*   Updated: 2019/10/23 15:48:58 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:43:39 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *))
 	tmp = NULL;
 	if (!lst || !f)
 		return (NULL);
-	if ((new = (t_list *)malloc(ft_lstsize(lst) * sizeof(t_list))))
+	new = (t_list *)malloc(ft_lstsize(lst) * sizeof(t_list));
+	if (new)
 	{
 		tmp = f(lst->content);
 		new = tmp;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
+/*   By: gpladet <gpladet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 13:55:06 by gpladet           #+#    #+#             */
-/*   Updated: 2020/08/25 16:29:43 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:33:17 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static int	ft_isspace(char c)
 {
 	if ((c != '\0') && ((c == '\t') || (c == '\n')
-				|| (c == '\v') || (c == '\f')
-				|| (c == '\r') || (c == ' ')))
+			|| (c == '\v') || (c == '\f')
+			|| (c == '\r') || (c == ' ')))
 		return (1);
 	return (0);
 }
@@ -30,7 +30,7 @@ static int	check_long_value(int sign, unsigned int result)
 	return (sign * (int)result);
 }
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int				i;
 	int				sign;

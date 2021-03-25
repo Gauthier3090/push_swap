@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpladet <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gpladet <gpladet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/11 10:28:18 by gpladet           #+#    #+#             */
-/*   Updated: 2019/10/23 15:06:53 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:34:47 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	i = 0;
 	if (start > (unsigned int)ft_strlen(s))
 	{
-		if (!(word = ft_calloc(1, sizeof(char))))
+		word = ft_calloc(1, sizeof(char));
+		if (!word)
 			return (NULL);
 		return (word);
 	}
-	if (!(word = ft_calloc(len + 1, sizeof(char))))
+	word = ft_calloc(len + 1, sizeof(char));
+	if (!word)
 		return (NULL);
 	while ((i < len) && (s[start] != '\0'))
 	{

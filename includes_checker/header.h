@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:09:41 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/25 15:00:17 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:31:20 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_stack
 /*
 ** check.c
 */
-int 				check_int(char **argv);
+int					check_int(char **argv);
 int					check_duplicate(char **argv);
 int					check_args(char **argv);
 
@@ -66,7 +66,7 @@ int					ft_strlen_stack(t_stack *stack);
 ** utils.c
 */
 long				ft_atol(const char *str);
-int 				ft_strcmp(const char *s1, const char *s2);
+int					ft_strcmp(const char *s1, const char *s2);
 int					ft_whitespace(const char c);
 char				*ft_strcpy(char *dest, char *src);
 void				*ft_realloc(void *ptr, size_t size);
