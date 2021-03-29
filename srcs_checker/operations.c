@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpladet <gpladet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 21:18:34 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/25 15:22:18 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/29 14:36:11 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,30 +46,9 @@ void	ft_rotate(t_stack *stack)
 	stack->value = tmp;
 }
 
-int	*ft_tab_int(t_stack *stack)
-{
-	t_stack	*element;
-	int		*tab;
-	int		i;
-
-	tab = ft_calloc(ft_strlen_stack(stack), sizeof(int));
-	if (!tab)
-		error_message(ERROR_CALLOC);
-	i = -1;
-	tab[++i] = stack->value;
-	element = stack->next;
-	while (element->next)
-	{
-		tab[++i] = element->value;
-		element = element->next;
-	}
-	tab[++i] = element->value;
-	stack->value = tab[i];
-	return (tab);
-}
-
 void	ft_reverse_rotate(t_stack *stack)
 {
+	t_stack	*element;
 	int		*tmp;
 	int		i;
 
@@ -80,9 +59,20 @@ void	ft_reverse_rotate(t_stack *stack)
 		ft_swap(stack);
 		return ;
 	}
-	tmp = ft_tab_int(stack);
-	stack = stack->next;
+	if (!(tmp = ft_calloc(ft_strlen_stack(stack), sizeof(int))))
+		exit(EXIT_FAILURE);
 	i = -1;
+	tmp[++i] = stack->value;
+	element = stack->next;
+	while (element->next)
+	{
+		tmp[++i] = element->value;
+		element = element->next;
+	}
+	tmp[++i] = element->value;
+	stack->value = tmp[i];
+	i = -1;
+	stack = stack->next;
 	while (++i < ft_strlen_stack(stack))
 	{
 		stack->value = tmp[i];

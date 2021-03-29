@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpladet <gpladet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:09:21 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/25 15:22:16 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/29 14:11:00 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	execute_operations(char **argv, t_stack **a, t_stack **b)
 		free(line);
 		display_stack(*a, *b);
 	}
+	free(line);
 	return (TRUE);
 }
 

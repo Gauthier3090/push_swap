@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpladet <gpladet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:59:36 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/25 15:22:25 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/29 14:34:42 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int	ft_operations(char *line, t_stack **a, t_stack **b)
 		return (TRUE);
 	else
 	{
+		free(line);
 		ft_putendl_fd("Error", 1);
 		return (FALSE);
 	}
