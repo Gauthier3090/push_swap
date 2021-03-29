@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 21:18:34 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/29 14:36:11 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/29 16:14:09 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,10 @@ void	ft_rotate(t_stack *stack)
 void	ft_reverse_rotate(t_stack *stack)
 {
 	t_stack	*element;
+	t_stack	*stack_size;
 	int		*tmp;
 	int		i;
+	int		size;
 
 	if (!stack || ft_strlen_stack(stack) <= 1)
 		return ;
@@ -64,6 +66,7 @@ void	ft_reverse_rotate(t_stack *stack)
 	i = -1;
 	tmp[++i] = stack->value;
 	element = stack->next;
+	stack_size = element->next;
 	while (element->next)
 	{
 		tmp[++i] = element->value;
@@ -71,9 +74,10 @@ void	ft_reverse_rotate(t_stack *stack)
 	}
 	tmp[++i] = element->value;
 	stack->value = tmp[i];
-	i = -1;
+	size = ft_strlen_stack(stack_size);
 	stack = stack->next;
-	while (++i < ft_strlen_stack(stack))
+	i = -1;
+	while (++i < size)
 	{
 		stack->value = tmp[i];
 		stack = stack->next;
