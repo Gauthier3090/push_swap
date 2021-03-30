@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:09:21 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/29 14:11:00 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/30 16:35:03 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,11 @@ t_stack	*init_stack(t_stack *a, char **argv)
 
 int	ft_sorted_stack(t_stack *a, t_stack *b)
 {
-	int	min;
-
 	if (b)
 		return (FALSE);
-	min = a->value;
-	while (a->next)
+	while (a && a->next)
 	{
-		if (min < a->value)
+		if (a->value > a->next->value)
 			return (FALSE);
 		a = a->next;
 	}
