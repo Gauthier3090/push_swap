@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:52:33 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/30 15:09:10 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/31 16:49:04 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int argc, char **argv)
 		else
 		{
 			a = init_stack(a, argv);
-			sort_stack(a, b);
+			sort_stack(&a, &b);
 			a = free_stack(a);
 			b = free_stack(b);
 		}

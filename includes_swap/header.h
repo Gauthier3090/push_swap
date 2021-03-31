@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:51:39 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/30 15:07:55 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/03/31 16:48:48 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void				display_stack(t_stack *a, t_stack *b);
 ** sort.c
 */
 int					get_middle(t_stack *a);
-void				sort_stack(t_stack *a, t_stack *b);
+void				sort_stack(t_stack **a, t_stack **b);
 
 /*
 ** stack.c
