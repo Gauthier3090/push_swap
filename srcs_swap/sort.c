@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 14:43:25 by gpladet           #+#    #+#             */
-/*   Updated: 2021/04/01 18:15:36 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/04/01 18:36:44 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	bubble_sort(t_stack *stack, int size)
 		sorted = TRUE;
 		while (size)
 		{
+			ft_putnbr_fd(size, 1);
 			if (stack->value > stack->next->value)
 			{
 				temp = stack->value;
@@ -82,7 +83,7 @@ void	push_stack_median_a(t_stack **a, t_stack **b, int median)
 	size = ft_strlen_stack(*a) + 1;
 	while (--size)
 	{
-		if ((*a)->value <= median)
+		if ((*a)->value < median)
 		{
 			ft_push(b, a);
 			ft_putendl_fd("pb", 1);
@@ -95,8 +96,12 @@ void	push_stack_median_a(t_stack **a, t_stack **b, int median)
 	}
 }
 
-void	push_stack_median_b(t_stack **a, t_stack **b)
+void	push_stack_median_b(t_stack **a, t_stack **b, int *tab_median)
 {
+	t_stack	*element;
+	int		median;
+	int		index_median;
+
 	if (ft_strlen_stack(*b) == 1)
 	{
 		ft_push(a, b);
@@ -113,6 +118,16 @@ void	push_stack_median_b(t_stack **a, t_stack **b)
 		ft_putendl_fd("pa", 1);
 		ft_push(a, b);
 		ft_putendl_fd("pa", 1);
+	}
+	else
+	{
+		element = duplicate_stack(*b);
+		bubble_sort(element, tab_median[0]);
+		index_median = get_index_median(element);
+		median = get_value_median(element, index_median);
+		ft_putnbr_fd(median, 1);
+		ft_putendl_fd("", 1);
+		element = free_stack(element);
 	}
 }
 
@@ -149,10 +164,9 @@ void	sort_stack(t_stack **a, t_stack **b)
 	while (ft_strlen_stack(*a) > 2)
 	{
 		element = duplicate_stack(*a);
-		bubble_sort(element, ft_strlen_stack(element));
 		index_median = get_index_median(element);
-		median = get_value_median(element, index_median + 1);
-		tab_median = add_tab(tab_median, index_median + 1);
+		median = get_value_median(element, index_median + 2);
+		tab_median = add_tab(tab_median, index_median);
 		push_stack_median_a(a, b, median);
 		element = free_stack(element);
 	}
@@ -164,6 +178,7 @@ void	sort_stack(t_stack **a, t_stack **b)
 			ft_putendl_fd("sa", 1);
 		}
 	}
-	push_stack_median_b(a, b);
+	push_stack_median_b(a, b, tab_median);
+	free(tab_median);
 	display_stack(*a, *b);
 }
