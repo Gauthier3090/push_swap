@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 14:43:25 by gpladet           #+#    #+#             */
-/*   Updated: 2021/04/01 16:27:01 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/04/01 17:00:53 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,13 @@ void	sort_stack(t_stack **a, t_stack **b)
 		push_stack_median_a(a, b, median);
 		element = free_stack(element);
 	}
-	if ((*a)->value > (*a)->next->value)
+	if (ft_strlen_stack(*a) == 2)
 	{
-		ft_swap(*a);
-		ft_putendl_fd("sa", 1);
+		if ((*a)->value > (*a)->next->value)
+		{
+			ft_swap(*a);
+			ft_putendl_fd("sa", 1);
+		}
 	}
 	display_stack(*a, *b);
 }
