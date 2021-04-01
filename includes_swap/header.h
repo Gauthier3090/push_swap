@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:51:39 by gpladet           #+#    #+#             */
-/*   Updated: 2021/04/01 17:00:38 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/04/01 17:36:58 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void				ft_reverse_rotate(t_stack *stack);
 */
 void				error_message(char *message);
 void				display_stack(t_stack *a, t_stack *b);
+void				display_tab_int(int *tab);
 
 /*
 ** sort.c

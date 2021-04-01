@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpladet <gpladet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 21:12:48 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/25 15:22:22 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/04/01 17:50:20 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,19 @@ void	display_stack(t_stack *a, t_stack *b)
 			a = a->next;
 		if (b)
 			b = b->next;
+	}
+}
+
+void	display_tab_int(int *tab)
+{
+	int	i;
+	int	size;
+
+	i = -1;
+	size = sizeof(*tab) / sizeof(tab[0]);
+	while (++i < size)
+	{
+		ft_putnbr_fd(tab[i], 1);
+		ft_putchar_fd(' ', 1);
 	}
 }
