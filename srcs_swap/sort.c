@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 14:43:25 by gpladet           #+#    #+#             */
-/*   Updated: 2021/04/01 23:18:34 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/04/02 16:19:52 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	bubble_sort(t_stack *stack, int size)
 		stack = element;
 		size = tmp;
 		sorted = TRUE;
-		while (size)
+		while (--size)
 		{
 			if (stack->value > stack->next->value)
 			{
@@ -61,7 +61,6 @@ void	bubble_sort(t_stack *stack, int size)
 				sorted = FALSE;
 			}
 			stack = stack->next;
-			size--;
 		}
 	}
 }
@@ -92,9 +91,9 @@ void	bubble_sort_stack(t_stack *stack)
 	}
 }
 
-int	get_index_median(t_stack *stack)
+int	get_index_median(int size)
 {
-	return (ft_strlen_stack(stack) / 2);
+	return (size / 2);
 }
 
 int	get_value_median(t_stack *stack, int index_median)
@@ -114,7 +113,7 @@ void	push_stack_median_a(t_stack **a, t_stack **b, int median)
 	size = ft_strlen_stack(*a) + 1;
 	while (--size)
 	{
-		if ((*a)->value <= median)
+		if ((*a)->value < median)
 		{
 			ft_push(b, a);
 			ft_putendl_fd("pb", 1);
@@ -144,16 +143,12 @@ void	sort_median_stack_b(t_stack **a, t_stack **b, int size, int median)
 	}
 }
 
-void	push_stack_median_b(t_stack **a, t_stack **b, int *tab_median)
+void	sort_stack_b(t_stack **a, t_stack **b)
 {
 	t_stack	*element;
+	int		index;
 	int		median;
-	int		index_median;
-	int		i;
-	int		size;
 
-	i = 0;
-	size = (sizeof(*tab_median) / sizeof(tab_median[0])) + 1;
 	while (ft_strlen_stack(*b))
 	{
 		if (ft_strlen_stack(*b) == 1)
@@ -170,85 +165,90 @@ void	push_stack_median_b(t_stack **a, t_stack **b, int *tab_median)
 			}
 			ft_push(a, b);
 			ft_push(a, b);
-			i++;
+			ft_putendl_fd("pa", 1);
+			ft_putendl_fd("pa", 1);
 		}
 		else
 		{
 			element = duplicate_stack(*b);
-			if (!sorted_stack(*b))
-			{
-				if (i <= size)
-					bubble_sort(element, tab_median[i]);
-				else
-					bubble_sort_stack(element);
-				index_median = get_index_median(element);
-				median = get_value_median(element, index_median);
-			}
-			else
-			{
-				index_median = get_index_median(*b);
-				median = get_value_median(*b, index_median);
-			}
-			if (i <= size)
-				sort_median_stack_b(a, b, tab_median[i] + 2, median);
-			else
-				sort_median_stack_b(a, b, ft_strlen_stack(*b) + 1, median);
+			bubble_sort_stack(element);
+			index = get_index_median(ft_strlen_stack(element));
+			median = get_value_median(element, index);
+			sort_median_stack_b(a, b, ft_strlen_stack(*b) + 1, median);
 			element = free_stack(element);
-			i++;
 		}
 	}
 }
 
-int	*add_tab(int *tab, int value)
+void	push_stack_median_b(t_stack **a, t_stack **b, t_stack *tab_median)
 {
-	int	size;
+	t_stack	*tmp;
+	t_stack	*element;
+	int		index;
+	int		median;
 
-	if (!tab)
+	while (tab_median)
 	{
-		tab = ft_calloc(1, sizeof(int));
-		if (!tab)
-			error_message(ERROR_CALLOC);
-		tab[0] = value;
+		if (tab_median->value == 1)
+		{
+			ft_push(a, b);
+			ft_putendl_fd("pa", 1);
+		}
+		else if (tab_median->value == 2)
+		{
+			if ((*b)->value < (*b)->next->value)
+			{
+				ft_swap(*b);
+				ft_putendl_fd("sb", 1);
+			}
+			ft_push(a, b);
+			ft_push(a, b);
+			ft_putendl_fd("pa", 1);
+			ft_putendl_fd("pa", 1);
+		}
+		else
+		{
+			tmp = duplicate_stack(*b);
+			element = duplicate_stack(tmp);
+			bubble_sort(element, tab_median->value);
+			index = get_index_median(tab_median->value);
+			median = get_value_median(element, index);
+			sort_median_stack_b(a, b, tab_median->value + 1, median);
+			tmp = free_stack(tmp);
+			element = free_stack(element);
+		}
+		tab_median = tab_median->next;
 	}
-	else
-	{
-		size = sizeof(*tab) / sizeof(tab[0]);
-		tab = ft_realloc(tab, size + 1);
-		size = sizeof(*tab) / sizeof(tab[0]);
-		tab[size] = value;
-	}
-	return (tab);
+	if (*b)
+		sort_stack_b(a, b);
 }
 
 void	sort_stack(t_stack **a, t_stack **b)
 {
 	t_stack	*element;
+	int		index;
 	int		median;
-	int		index_median;
-	int		*tab_median;
+	t_stack	*tab_median;
 
 	if (sorted_stack(*a))
 		return ;
 	tab_median = NULL;
-	while (ft_strlen_stack(*a) > 2)
+	while (ft_strlen_stack(*a) != 2)
 	{
 		element = duplicate_stack(*a);
 		bubble_sort_stack(element);
-		index_median = get_index_median(element);
-		median = get_value_median(element, index_median);
-		tab_median = add_tab(tab_median, index_median);
+		index = get_index_median(ft_strlen_stack(element));
+		median = get_value_median(element, index);
+		tab_median = push_stack(tab_median, index);
 		push_stack_median_a(a, b, median);
 		element = free_stack(element);
 	}
-	if (ft_strlen_stack(*a) == 2)
+	if ((*a)->value > (*a)->next->value)
 	{
-		if ((*a)->value > (*a)->next->value)
-		{
-			ft_swap(*a);
-			ft_putendl_fd("sa", 1);
-		}
+		ft_swap(*a);
+		ft_putendl_fd("sa", 1);
 	}
 	push_stack_median_b(a, b, tab_median);
 	display_stack(*a, *b);
-	free(tab_median);
+	tab_median = free_stack(tab_median);
 }

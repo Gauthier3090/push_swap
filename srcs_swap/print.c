@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 21:12:48 by gpladet           #+#    #+#             */
-/*   Updated: 2021/04/01 20:33:25 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/04/02 14:28:54 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,5 @@ void	display_stack(t_stack *a, t_stack *b)
 			a = a->next;
 		if (b)
 			b = b->next;
-	}
-}
-
-void	display_tab_int(int *tab)
-{
-	int	i;
-	int	size;
-	
-	i = 0;
-	size = (sizeof(*tab) / sizeof(tab[0])) + 1;
-	while (size)
-	{
-		ft_putnbr_fd(tab[i], 1);
-		ft_putchar_fd(' ', 1);
-		i++;
-		size--;
 	}
 }
