@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 14:43:25 by gpladet           #+#    #+#             */
-/*   Updated: 2021/04/02 16:19:52 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/04/05 17:34:24 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,10 +126,23 @@ void	push_stack_median_a(t_stack **a, t_stack **b, int median)
 	}
 }
 
+void	reverse_rotate_stack_b(t_stack *b, int reverse)
+{
+	while (--reverse)
+	{
+		ft_reverse_rotate(b);
+		ft_putendl_fd("rrb", 1);
+	}
+}
+
 void	sort_median_stack_b(t_stack **a, t_stack **b, int size, int median)
 {
+	int	reverse;
+
+	reverse = 0;
 	while (--size)
 	{
+		display_stack(*a, *b);
 		if ((*b)->value > median)
 		{
 			ft_push(a, b);
@@ -139,8 +152,10 @@ void	sort_median_stack_b(t_stack **a, t_stack **b, int size, int median)
 		{
 			ft_rotate(*b);
 			ft_putendl_fd("rb", 1);
+			reverse++;
 		}
 	}
+	reverse_rotate_stack_b(*b, reverse + 1);
 }
 
 void	sort_stack_b(t_stack **a, t_stack **b)
