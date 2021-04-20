@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:09:41 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/29 14:34:15 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/04/20 16:38:07 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ typedef struct s_stack
 /*
 ** check.c
 */
-int					check_int(char **argv);
-int					check_duplicate(char **argv);
+int					check_int(char **tab);
+int					check_duplicate(char **tab);
 int					check_args(char **argv);
+void				free_tab(char **tab);
 
 /*
 ** operations.c

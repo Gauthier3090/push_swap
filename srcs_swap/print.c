@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 21:12:48 by gpladet           #+#    #+#             */
-/*   Updated: 2021/04/02 14:28:54 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/04/20 16:29:27 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	error_message(char *message)
 {
-	ft_putstr_fd("Error: ", 1);
 	ft_putendl_fd(message, 1);
 	exit(EXIT_FAILURE);
 }
