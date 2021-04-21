@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:51:39 by gpladet           #+#    #+#             */
-/*   Updated: 2021/04/20 16:37:32 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/04/21 15:26:45 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,49 +17,25 @@
 # define FALSE 0
 # define ERROR_CALLOC "Dynamic allocation has failed"
 
-typedef struct s_stack
+typedef struct s_data
 {
-	int				value;
-	struct s_stack	*next;
-}					t_stack;
+	int			*array_a;
+	int			*array_b;
+}					t_data;
 
 /*
 ** check.c
 */
 int					check_int(char **tab);
-int					check_duplicate(char **tab);
+int					check_duplicate(char **tab, int i, int j);
 int					check_args(char **argv);
 void				free_tab(char **tab);
-
-/*
-** operations.c
-*/
-void				ft_swap(t_stack *stack);
-void				ft_push(t_stack **dest, t_stack **src);
-void				ft_rotate(t_stack *stack);
-void				ft_reverse_rotate(t_stack *stack);
 
 /*
 ** print.c
 */
 void				error_message(char *message);
-void				display_stack(t_stack *a, t_stack *b);
-void				display_tab_int(int *tab);
-
-/*
-** sort.c
-*/
-int					get_middle(t_stack *a);
-void				sort_stack(t_stack **a, t_stack **b);
-
-/*
-** stack.c
-*/
-t_stack				*free_stack(t_stack *stack);
-t_stack				*push_stack(t_stack *stack, int value);
-t_stack				*pop_stack(t_stack *stack);
-void				print_stack(t_stack *stack);
-int					ft_strlen_stack(t_stack *stack);
+void				display_arrays(int *array_a, int *array_b);
 
 /*
 ** utils.c

@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:11:20 by gpladet           #+#    #+#             */
-/*   Updated: 2021/04/20 16:38:44 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/04/21 15:12:47 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,16 @@ int 	check_int(char **tab)
 	return (TRUE);
 }
 
-int	check_duplicate(char **tab)
+int	check_duplicate(char **tab, int i, int j)
 {
-	int		i;
-	int		j;
+	int		tmp;
 	long	number;
 	long	number2;
 
-	i = -1;
+	tmp = j;
 	while (tab[++i])
 	{
-		j = -1;
+		j = tmp;
 		while (tab[++j])
 		{
 			if (i != j)
@@ -91,7 +90,7 @@ int	check_args(char **argv)
 		}
 		free_tab(tab);
 	}
-	if (!(check_duplicate(argv)))
+	if (!(check_duplicate(argv, 0, 0)))
 		return (FALSE);
 	return (TRUE);
 }
