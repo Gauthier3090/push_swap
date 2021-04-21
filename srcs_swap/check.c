@@ -6,11 +6,11 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 12:11:20 by gpladet           #+#    #+#             */
-/*   Updated: 2021/04/21 15:12:47 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/04/21 15:42:33 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes_checker/header.h"
+#include "../includes_swap/header.h"
 
 int 	check_int(char **tab)
 {

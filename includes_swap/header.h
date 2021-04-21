@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:51:39 by gpladet           #+#    #+#             */
-/*   Updated: 2021/04/21 15:26:45 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/04/21 17:37:04 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ typedef struct s_data
 {
 	int			*array_a;
 	int			*array_b;
+	int			length_a;
+	int			length_b;
 }					t_data;
 
 /*
@@ -32,10 +34,16 @@ int					check_args(char **argv);
 void				free_tab(char **tab);
 
 /*
+** operations.c
+*/
+void				ft_swap(int	*array);
+void				ft_push(int **dest, int **src, int *length_dest, int *length_src);
+
+/*
 ** print.c
 */
 void				error_message(char *message);
-void				display_arrays(int *array_a, int *array_b);
+void				display_arrays(t_data *data);
 
 /*
 ** utils.c
