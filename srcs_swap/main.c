@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:52:33 by gpladet           #+#    #+#             */
-/*   Updated: 2021/04/21 17:55:03 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/04/21 18:16:43 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	*init_array(char **tab, int i, int *length)
 	int	*array;
 
 	*length = ft_strlen_tab(tab) - 1;
+	if (*length == 0)
+		(*length)++;
 	array = ft_calloc(*length, sizeof(int));
 	if (!array)
 		error_message(ERROR_CALLOC);
@@ -52,6 +54,8 @@ int	main(int argc, char **argv)
 		if (argc == 2)
 		{
 			tab = ft_split(argv[1], ' ');
+			if (!tab)
+				error_message(ERROR_CALLOC);
 			if (!check_duplicate(tab, -1, -1))
 				error_message("Error");
 			data->array_a = init_array(tab, -1, &(data->length_a));
@@ -60,7 +64,7 @@ int	main(int argc, char **argv)
 		else
 			data->array_a = init_array(argv, 0, &(data->length_a));
 		display_arrays(data);
-		ft_swap(data->array_a);
+		ft_swap(data->array_a, data->length_a);
 		display_arrays(data);
 		ft_push(&(data->array_b), &(data->array_a), &(data->length_b), &(data->length_a));
 		display_arrays(data);

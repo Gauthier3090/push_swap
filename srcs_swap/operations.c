@@ -6,17 +6,17 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/20 21:18:34 by gpladet           #+#    #+#             */
-/*   Updated: 2021/04/21 17:58:22 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/04/21 18:11:32 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_swap/header.h"
 
-void	ft_swap(int	*array)
+void	ft_swap(int	*array, int size)
 {
 	int	tmp;
 
-	if (!array || sizeof(array) <= 1)
+	if (!array || size <= 1)
 		return ;
 	tmp = array[0];
 	array[0] = array[1];

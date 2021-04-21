@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:51:39 by gpladet           #+#    #+#             */
-/*   Updated: 2021/04/21 17:37:04 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/04/21 18:11:49 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void				free_tab(char **tab);
 /*
 ** operations.c
 */
-void				ft_swap(int	*array);
+void				ft_swap(int	*array, int size);
 void				ft_push(int **dest, int **src, int *length_dest, int *length_src);
 
 /*
