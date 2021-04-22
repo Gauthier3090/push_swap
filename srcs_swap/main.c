@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:52:33 by gpladet           #+#    #+#             */
-/*   Updated: 2021/04/22 16:32:26 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/04/22 19:11:32 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,15 @@ int	ft_strlen_tab(char **tab)
 	return (i);
 }
 
-int	*init_array(char **tab, int i, int *length)
+int	*init_array(char **tab, int i, int *length, int arg)
 {
 	int	j;
 	int	*array;
 
-	*length = ft_strlen_tab(tab) - 1;
-	if (*length == 0)
-		(*length)++;
+	if (arg)
+		*length = ft_strlen_tab(tab);
+	else
+		*length = ft_strlen_tab(tab) - 1;
 	array = ft_calloc(*length, sizeof(int));
 	if (!array)
 		error_message(ERROR_CALLOC);
@@ -58,14 +59,12 @@ int	main(int argc, char **argv)
 				error_message(ERROR_CALLOC);
 			if (!check_duplicate(tab, -1, -1))
 				error_message("Error");
-			data->array_a = init_array(tab, -1, &(data->length_a));
+			data->array_a = init_array(tab, -1, &(data->length_a), TRUE);
 			free_tab(tab);
 		}
 		else
-			data->array_a = init_array(argv, 0, &(data->length_a));
-		display_arrays(data);
+			data->array_a = init_array(argv, 0, &(data->length_a), FALSE);
 		sort_array(data);
-		display_arrays(data);
 		free(data->array_a);
 		free(data->array_b);
 		free(data);

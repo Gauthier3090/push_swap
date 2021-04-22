@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:09:21 by gpladet           #+#    #+#             */
-/*   Updated: 2021/04/20 17:06:23 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/04/22 18:41:09 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int	main(int argc, char **argv)
 			if (!tab)
 				error_message(ERROR_CALLOC);
 			if (!check_args(tab))
+				error_message("Error");
+			if (!check_duplicate(tab, -1, -1))
 				error_message("Error");
 			if (execute_operations(tab, &a, &b, -1))
 			{
