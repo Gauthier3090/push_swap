@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:09:21 by gpladet           #+#    #+#             */
-/*   Updated: 2021/04/22 18:41:09 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/04/22 19:18:54 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,29 @@ int	ft_sorted_stack(t_stack *a, t_stack *b)
 	return (TRUE);
 }
 
+t_stack	*duplicate_stack(t_stack *src)
+{
+	t_stack	*dst;
+
+	dst = NULL;
+	while (src)
+	{
+		dst = push_stack(dst, src->value);
+		src = src->next;
+	}
+	return (dst);
+}
+
 int	execute_operations(char **argv, t_stack **a, t_stack **b, int i)
 {
 	char	*line;
 	int		ret;
+	t_stack	*tmp;
 
 	*a = init_stack(*a, argv, i);
+	tmp = duplicate_stack(*a);
+	*a = free_stack(*a);
+	*a = tmp;
 	ret = 1;
 	while (ret)
 	{
