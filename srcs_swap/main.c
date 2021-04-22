@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:52:33 by gpladet           #+#    #+#             */
-/*   Updated: 2021/04/21 18:16:43 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/04/22 16:32:26 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,7 @@ int	main(int argc, char **argv)
 		else
 			data->array_a = init_array(argv, 0, &(data->length_a));
 		display_arrays(data);
-		ft_swap(data->array_a, data->length_a);
-		display_arrays(data);
-		ft_push(&(data->array_b), &(data->array_a), &(data->length_b), &(data->length_a));
+		sort_array(data);
 		display_arrays(data);
 		free(data->array_a);
 		free(data->array_b);

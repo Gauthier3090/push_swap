@@ -6,7 +6,7 @@
 #    By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/04 15:34:54 by gpladet           #+#    #+#              #
-#    Updated: 2021/04/21 15:02:30 by gpladet          ###   ########.fr        #
+#    Updated: 2021/04/22 16:32:02 by gpladet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRCS_CHECKER = check.c main.c operations.c print.c read.c stack.c utils.c
 OBJS_CHECKER = ${addprefix ${PATH_OBJ_CHECKER}, ${SRCS_CHECKER:.c=.o}}
 INCS_CHECKER = ${addprefix ${PATH_INC_CHECKER}, header.h}
 
-SRCS_SWAP = check.c main.c operations.c print.c utils.c
+SRCS_SWAP = array.c check.c main.c operations.c print.c sort.c utils.c
 OBJS_SWAP = ${addprefix ${PATH_OBJ_SWAP}, ${SRCS_SWAP:.c=.o}}
 INCS_SWAP = ${addprefix ${PATH_INC_SWAP}, header.h}
 
