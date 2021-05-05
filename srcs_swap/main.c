@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 17:51:59 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/05 20:29:14 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/06 01:28:58 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,16 @@ t_double_linked_list_node	*new_node(char *value)
 void	insert(t_double_linked_list *list, t_double_linked_list_node *new_node)
 {
 	if (list->count == 0)
-		list->current = new_node;
-	else if (list->count == 1)
 	{
+		list->current = new_node;
 		new_node->prev = list->current;
 		new_node->next = list->current;
-		list->current = new_node;
 	}
 	else
 	{
-		new_node->prev = list->current->prev;
-		new_node->next = list->current;
+		new_node->prev = list->current;
+		new_node->next = list->current->prev;
 		list->current = new_node;
-		printf("%d\n", list->current->value);
-		printf("%d\n", list->current->next->value);
-		printf("%d\n", list->current->prev->value);
 	}
 	list->count++;
 }
@@ -91,6 +86,10 @@ int	main(int argc, char **argv)
 			node = new_node(argv[i]);
 			insert(list, node);
 		}
+		printf("%d\n", list->current->value);
+		printf("%d\n", list->current->next->next->next->value);
+		printf("%d\n", list->current->prev->value);
+		printf("%d\n", list->current->prev->prev->prev->value);
 		free_list(list);
 		free(node);
 	}
