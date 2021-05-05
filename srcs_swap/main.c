@@ -5,69 +5,93 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/25 15:52:33 by gpladet           #+#    #+#             */
-/*   Updated: 2021/04/22 19:11:32 by gpladet          ###   ########.fr       */
+/*   Created: 2021/05/05 17:51:59 by gpladet           #+#    #+#             */
+/*   Updated: 2021/05/05 20:29:14 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_swap/header.h"
 
-int	ft_strlen_tab(char **tab)
+void	error_message(char *message)
 {
-	int	i;
-
-	i = 0;
-	while (tab[i])
-		i++;
-	return (i);
+	ft_putendl_fd(message, 1);
+	exit(EXIT_FAILURE);
 }
 
-int	*init_array(char **tab, int i, int *length, int arg)
+t_double_linked_list	*new_list(void)
 {
-	int	j;
-	int	*array;
+	t_double_linked_list	*list;
 
-	if (arg)
-		*length = ft_strlen_tab(tab);
-	else
-		*length = ft_strlen_tab(tab) - 1;
-	array = ft_calloc(*length, sizeof(int));
-	if (!array)
+	list = ft_calloc(1, sizeof(t_double_linked_list));
+	if (!list)
 		error_message(ERROR_CALLOC);
-	j = -1;
-	while (tab[++i])
-		array[++j] = ft_atoi(tab[i]);
-	return (array);
+	return (list);
+}
+
+t_double_linked_list_node	*new_node(char *value)
+{
+	t_double_linked_list_node	*new_node;
+
+	new_node = ft_calloc(1, sizeof(t_double_linked_list_node));
+	if (!new_node)
+		error_message(ERROR_CALLOC);
+	new_node->value = ft_atoi(value);
+	return (new_node);
+}
+
+void	insert(t_double_linked_list *list, t_double_linked_list_node *new_node)
+{
+	if (list->count == 0)
+		list->current = new_node;
+	else if (list->count == 1)
+	{
+		new_node->prev = list->current;
+		new_node->next = list->current;
+		list->current = new_node;
+	}
+	else
+	{
+		new_node->prev = list->current->prev;
+		new_node->next = list->current;
+		list->current = new_node;
+		printf("%d\n", list->current->value);
+		printf("%d\n", list->current->next->value);
+		printf("%d\n", list->current->prev->value);
+	}
+	list->count++;
+}
+
+void	free_list(t_double_linked_list *list)
+{
+	t_double_linked_list	*tmp;
+
+	tmp = list;
+	while (tmp->current)
+	{
+		tmp->current = list->current->next;
+		free(list->current);
+		list->current = NULL;
+	}
+	free(list);
 }
 
 int	main(int argc, char **argv)
 {
-	t_data	*data;
-	char	**tab;
+	t_double_linked_list		*list;
+	t_double_linked_list_node	*node;
+	int							i;
 
 	if (argc > 1)
 	{
-		if (!check_args(argv))
-			error_message("Error");
-		data = ft_calloc(1, sizeof(t_data));
-		if (!data)
-			error_message(ERROR_CALLOC);
-		if (argc == 2)
+		node = NULL;
+		list = new_list();
+		i = 0;
+		while (argv[++i])
 		{
-			tab = ft_split(argv[1], ' ');
-			if (!tab)
-				error_message(ERROR_CALLOC);
-			if (!check_duplicate(tab, -1, -1))
-				error_message("Error");
-			data->array_a = init_array(tab, -1, &(data->length_a), TRUE);
-			free_tab(tab);
+			node = new_node(argv[i]);
+			insert(list, node);
 		}
-		else
-			data->array_a = init_array(argv, 0, &(data->length_a), FALSE);
-		sort_array(data);
-		free(data->array_a);
-		free(data->array_b);
-		free(data);
+		free_list(list);
+		free(node);
 	}
-	return (EXIT_SUCCESS);
 }
