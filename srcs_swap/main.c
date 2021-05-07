@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 17:51:59 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/07 17:08:28 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/07 17:23:18 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,34 +106,36 @@ void	swap(t_double_linked_list *list)
 {
 	int	value;
 
-	if (list->count == 1)
-		return ;
 	value = list->current->value;
-	list->current->value = list->current->prev->value;
-	list->current->prev->value = value;
+	list->current->value = list->current->next->value;
+	list->current->next->value = value;
 }
 
 void	rotate(t_double_linked_list *list)
 {
-	list->current = list->current->prev;
+	list->current = list->current->next;
 }
 
 void	reverse_rotate(t_double_linked_list *list)
 {
-	list->current = list->current->next;
+	list->current = list->current->prev;
 }
 
 void	free_list(t_double_linked_list *list)
 {
-	int	i;
+	int							i;
+	t_double_linked_list_node	*tmp;
+	t_double_linked_list_node	*to_free;
 
-	i = -1;
-	while (++i < list->count - 1)
+	i = 0;
+	tmp = list->current;
+	while (i < list->count)
 	{
-		list->current = list->current->next;
-		free(list->current->prev);
+		to_free = tmp;
+		tmp = tmp->next;
+		free(to_free);
+		i++;
 	}
-	free(list->current);
 	free(list);
 }
 
