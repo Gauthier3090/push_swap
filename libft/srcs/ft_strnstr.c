@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpladet <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 13:46:45 by gpladet           #+#    #+#             */
-/*   Updated: 2019/10/17 13:30:53 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/07 22:07:01 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strnstr(const char *s1, const char *find, size_t len)
 	size_t	j;
 
 	if (!*find)
-		return ((char*)s1);
+		return ((char *)s1);
 	i = 0;
 	while (s1[i] != '\0' && i < len)
 	{
@@ -29,7 +29,7 @@ char	*ft_strnstr(const char *s1, const char *find, size_t len)
 				&& (i + j < len))
 				j++;
 			if (find[j] == '\0')
-				return ((char*)&s1[i]);
+				return ((char *)&s1[i]);
 		}
 		i++;
 	}
