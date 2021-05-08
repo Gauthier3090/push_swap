@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 17:51:59 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/07 23:08:43 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/08 14:37:34 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ char	**split_arg_env(char **argv)
 
 int	main(int argc, char **argv)
 {
-	t_double_linked_list		*list;
+	t_double_linked_list		*list_a;
+	t_double_linked_list		*list_b;
 	t_double_linked_list_node	*node;
 	int							i;
 	int							is_malloc;
@@ -61,15 +62,20 @@ int	main(int argc, char **argv)
 			argv = split_arg_env(argv);
 			is_malloc = TRUE;
 		}
-		list = new_list();
+		list_a = new_list();
+		list_b = new_list();
 		i = 0;
 		while (argv[++i])
 		{
 			node = new_node(argv[i]);
-			insert(list, node);
+			insert(list_a, node);
 		}
-		display_list_next(list);
-		free_list(list);
+		push(list_a, list_b);
+		display_list_next(list_a);
+		ft_putchar_fd('\n', 1);
+		display_list_next(list_b);
+		free_list(list_a);
+		free_list(list_b);
 		if (is_malloc)
 			free_tab(argv);
 	}

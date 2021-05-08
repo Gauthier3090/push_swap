@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:51:39 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/07 22:22:02 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/08 14:35:33 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_double_linked_list		*new_list(void);
 t_double_linked_list_node	*new_node(char *value);
 void						insert(t_double_linked_list *list,
 								t_double_linked_list_node *new_node);
+t_double_linked_list_node	*remove_first(t_double_linked_list *list);
 void						free_list(t_double_linked_list *list);
 
 /*
@@ -53,5 +54,6 @@ void						free_list(t_double_linked_list *list);
 void						swap(t_double_linked_list *list);
 void						rotate(t_double_linked_list *list);
 void						reverse_rotate(t_double_linked_list *list);
+void						push(t_double_linked_list *src, t_double_linked_list *dst);
 
 #endif
