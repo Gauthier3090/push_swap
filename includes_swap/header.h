@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:51:39 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/08 14:35:33 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/08 16:00:44 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ typedef struct s_double_linked_list
 }				t_double_linked_list;
 
 /*
+** check.c
+*/
+void						check_args(char **argv);
+
+/*
 ** display.c
 */
 void						display_list_prev(t_double_linked_list *list);
@@ -54,6 +59,7 @@ void						free_list(t_double_linked_list *list);
 void						swap(t_double_linked_list *list);
 void						rotate(t_double_linked_list *list);
 void						reverse_rotate(t_double_linked_list *list);
-void						push(t_double_linked_list *src, t_double_linked_list *dst);
+void						push(t_double_linked_list *src,
+								t_double_linked_list *dst);
 
 #endif

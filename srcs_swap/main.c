@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 17:51:59 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/08 14:37:34 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/08 16:13:05 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,20 @@ char	**split_arg_env(char **argv)
 	return (argv);
 }
 
+int	create_numbers(int argc, char ***argv)
+{
+	int	is_malloc;
+
+	is_malloc = FALSE;
+	if (argc == 2)
+	{
+		*argv = split_arg_env(*argv);
+		is_malloc = TRUE;
+	}
+	check_args(*argv);
+	return (is_malloc);
+}
+
 int	main(int argc, char **argv)
 {
 	t_double_linked_list		*list_a;
@@ -54,29 +68,23 @@ int	main(int argc, char **argv)
 	int							i;
 	int							is_malloc;
 
-	if (argc > 1)
+	if (argc <= 1)
+		return (0);
+	is_malloc = create_numbers(argc, &argv);
+	list_a = new_list();
+	list_b = new_list();
+	i = 0;
+	while (argv[++i])
 	{
-		is_malloc = FALSE;
-		if (argc == 2)
-		{
-			argv = split_arg_env(argv);
-			is_malloc = TRUE;
-		}
-		list_a = new_list();
-		list_b = new_list();
-		i = 0;
-		while (argv[++i])
-		{
-			node = new_node(argv[i]);
-			insert(list_a, node);
-		}
-		push(list_a, list_b);
-		display_list_next(list_a);
-		ft_putchar_fd('\n', 1);
-		display_list_next(list_b);
-		free_list(list_a);
-		free_list(list_b);
-		if (is_malloc)
-			free_tab(argv);
+		node = new_node(argv[i]);
+		insert(list_a, node);
 	}
+	push(list_a, list_b);
+	display_list_next(list_a);
+	ft_putchar_fd('\n', 1);
+	display_list_next(list_b);
+	free_list(list_a);
+	free_list(list_b);
+	if (is_malloc)
+		free_tab(argv);
 }
