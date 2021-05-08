@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 17:51:59 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/08 16:13:05 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/08 16:30:55 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,13 @@ int	create_numbers(int argc, char ***argv)
 		*argv = split_arg_env(*argv);
 		is_malloc = TRUE;
 	}
-	check_args(*argv);
+	if (!(check_args(*argv)))
+	{
+		ft_putendl_fd("Error", STDERR_FILENO);
+		if (is_malloc)
+			free_tab(*argv);
+		exit(EXIT_FAILURE);
+	}
 	return (is_malloc);
 }
 

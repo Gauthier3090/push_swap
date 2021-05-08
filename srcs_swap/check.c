@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/08 15:37:22 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/08 16:04:11 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/08 16:28:57 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,17 @@ long	ft_atol(const char *str)
 	return (ret);
 }
 
-void	check_int(char *value)
+int	check_int(char *value)
 {
 	long	number;
 
 	number = ft_atol(value);
 	if (number < INT_MIN || number > INT_MAX)
-	{
-		ft_putendl_fd("Error", STDERR_FILENO);
-		exit(EXIT_FAILURE);
-	}
+		return (FALSE);
+	return (TRUE);
 }
 
-void	check_duplicate(char **argv, int i, int j)
+int	check_duplicate(char **argv, int i, int j)
 {
 	int		tmp;
 	long	number;
@@ -73,18 +71,16 @@ void	check_duplicate(char **argv, int i, int j)
 				number = ft_atol(argv[i]);
 				number2 = ft_atol(argv[j]);
 				if (number == number2)
-				{
-					ft_putendl_fd("Error", STDERR_FILENO);
-					exit(EXIT_FAILURE);
-				}
+					return (FALSE);
 			}
 			j++;
 		}
 		i++;
 	}
+	return (TRUE);
 }
 
-void	check_args(char **argv)
+int	check_args(char **argv)
 {
 	int	i;
 	int	j;
@@ -98,14 +94,14 @@ void	check_args(char **argv)
 		while (argv[i][j])
 		{
 			if (!ft_isdigit(argv[i][j]))
-			{
-				ft_putendl_fd("Error", STDERR_FILENO);
-				exit(EXIT_FAILURE);
-			}
+				return (FALSE);
 			j++;
 		}
-		check_int(argv[i]);
+		if (!(check_int(argv[i])))
+			return (FALSE);
 		i++;
 	}
-	check_duplicate(argv, 1, 2);
+	if (!(check_duplicate(argv, 1, 2)))
+		return (FALSE);
+	return (TRUE);
 }
