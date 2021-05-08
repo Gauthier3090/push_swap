@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 17:51:59 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/08 16:30:55 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/08 22:10:44 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,7 @@ int	main(int argc, char **argv)
 		node = new_node(argv[i]);
 		insert(list_a, node);
 	}
-	push(list_a, list_b);
 	display_list_next(list_a);
-	ft_putchar_fd('\n', 1);
-	display_list_next(list_b);
 	free_list(list_a);
 	free_list(list_b);
 	if (is_malloc)

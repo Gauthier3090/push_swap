@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 22:09:08 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/08 15:30:46 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/08 22:14:52 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	insert(t_double_linked_list *list, t_double_linked_list_node *new_node)
 		new_node->next = tmp_next;
 		tmp_next->prev = new_node;
 		tmp_prev->next = new_node;
-		list->current = new_node;
 	}
 	list->count++;
 }
