@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:51:39 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/08 16:29:10 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/10 16:48:29 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int							check_args(char **argv);
 */
 void						display_list_prev(t_double_linked_list *list);
 void						display_list_next(t_double_linked_list *list);
+void						display_lists(t_double_linked_list *list_a,
+								t_double_linked_list *list_b);
 
 /*
 ** list.c
@@ -61,5 +63,11 @@ void						rotate(t_double_linked_list *list);
 void						reverse_rotate(t_double_linked_list *list);
 void						push(t_double_linked_list *src,
 								t_double_linked_list *dst);
+
+/*
+** sort.c
+*/
+void						sort_list(t_double_linked_list *list_a,
+								t_double_linked_list *list_b);
 
 #endif

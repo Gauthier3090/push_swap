@@ -6,113 +6,121 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:09:21 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/05 19:56:38 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/10 16:44:44 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_checker/header.h"
 
-t_stack	*init_stack(t_stack *a, char **argv, int i)
+void	free_tab(char **tab)
 {
-	while (argv[++i])
-		a = push_stack(a, ft_atoi(argv[i]));
-	return (a);
-}
+	int	i;
 
-int	ft_sorted_stack(t_stack *a, t_stack *b)
-{
-	if (b)
-		return (FALSE);
-	while (a && a->next)
+	if (!tab)
+		return ;
+	i = 0;
+	while (tab[i])
 	{
-		if (a->value > a->next->value)
-			return (FALSE);
-		a = a->next;
+		free(tab[i]);
+		i++;
 	}
-	return (TRUE);
+	free(tab);
 }
 
-t_stack	*duplicate_stack(t_stack *src)
+char	**split_arg_env(char **argv)
 {
-	t_stack	*dst;
+	char	*env;
+	char	*tmp;
 
-	dst = NULL;
-	while (src)
-	{
-		dst = push_stack(dst, src->value);
-		src = src->next;
-	}
-	return (dst);
+	tmp = ft_strjoin(argv[0], " ");
+	if (!tmp)
+		exit(EXIT_FAILURE);
+	env = ft_strjoin(tmp, argv[1]);
+	free(tmp);
+	if (!env)
+		exit(EXIT_FAILURE);
+	argv = ft_split(env, ' ');
+	if (!argv)
+		exit(EXIT_FAILURE);
+	free(env);
+	return (argv);
 }
 
-int	execute_operations(char **argv, t_stack **a, t_stack **b, int i)
+int	create_numbers(int argc, char ***argv)
+{
+	int	is_malloc;
+
+	is_malloc = FALSE;
+	if (argc == 2)
+	{
+		*argv = split_arg_env(*argv);
+		is_malloc = TRUE;
+	}
+	if (!(check_args(*argv)))
+	{
+		ft_putendl_fd("Error", STDERR_FILENO);
+		if (is_malloc)
+			free_tab(*argv);
+		exit(EXIT_FAILURE);
+	}
+	return (is_malloc);
+}
+
+void	execute_operations(t_double_linked_list *list_a,
+			t_double_linked_list *list_b)
 {
 	char	*line;
 	int		ret;
-	t_stack	*tmp;
 
-	*a = init_stack(*a, argv, i);
-	tmp = duplicate_stack(*a);
-	*a = free_stack(*a);
-	*a = tmp;
 	ret = 1;
 	while (ret)
 	{
 		ret = getinput(&line);
 		if (ret == 0)
 			break ;
-		if (!(ft_operations(line, a, b)))
-			return (FALSE);
+		if (!(list_operations(line, list_a, list_b)))
+		{
+			free(line);
+			free_list(list_a);
+			free_list(list_b);
+			ft_putendl_fd("Error", STDERR_FILENO);
+			return ;
+		}
 		free(line);
 	}
 	free(line);
-	return (TRUE);
+	if (sorted_list(list_a, list_b))
+		ft_putendl_fd("OK", 1);
+	else
+		ft_putendl_fd("KO", 1);
+	free_list(list_a);
 }
 
 int	main(int argc, char **argv)
 {
-	t_stack	*a;
-	t_stack	*b;
-	char	**tab;
+	t_double_linked_list		*list_a;
+	t_double_linked_list		*list_b;
+	t_double_linked_list_node	*node;
+	int							i;
+	int							is_malloc;
 
-	a = NULL;
-	b = NULL;
-	if (argc > 1)
+	if (argc <= 1)
+		return (0);
+	is_malloc = create_numbers(argc, &argv);
+	list_a = new_list();
+	list_b = new_list();
+	i = 0;
+	while (argv[i])
+		i += 1;
+	i -= 1;
+	while (i)
 	{
-		if (argc == 2)
-		{
-			tab = ft_split(argv[1], ' ');
-			if (!tab)
-				error_message(ERROR_CALLOC);
-			if (!check_args(tab))
-				error_message("Error");
-			if (!check_duplicate(tab, -1, -1))
-				error_message("Error");
-			if (execute_operations(tab, &a, &b, -1))
-			{
-				if (!(ft_sorted_stack(a, b)))
-					ft_putendl_fd("KO", 1);
-				else
-					ft_putendl_fd("OK", 1);
-			}
-			a = free_stack(a);
-			b = free_stack(b);
-			return (EXIT_SUCCESS);
-		}
-		if (!check_args(argv))
-			error_message("Error");
-		else
-		{
-			if (execute_operations(argv, &a, &b, 0))
-			{
-				if (!(ft_sorted_stack(a, b)))
-					ft_putendl_fd("KO", 1);
-				else
-					ft_putendl_fd("OK", 1);
-			}
-			a = free_stack(a);
-			b = free_stack(b);
-		}
+		node = new_node(argv[i]);
+		insert(list_a, node);
+		i -= 1;
 	}
-	return (EXIT_SUCCESS);
+	execute_operations(list_a, list_b);
+	free_list(list_b);
+	if (is_malloc)
+		free_tab(argv);
 }

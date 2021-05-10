@@ -5,83 +5,41 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/20 21:18:34 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/29 16:14:09 by gpladet          ###   ########.fr       */
+/*   Created: 2021/05/07 22:07:58 by gpladet           #+#    #+#             */
+/*   Updated: 2021/05/10 16:16:58 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_checker/header.h"
 
-void	ft_swap(t_stack *stack)
+void	swap(t_double_linked_list *list)
 {
-	int		tmp;
+	int	value;
 
-	if (!stack || ft_strlen_stack(stack) <= 1)
+	if (list->count == 0)
 		return ;
-	tmp = stack->value;
-	stack->value = stack->next->value;
-	stack->next->value = tmp;
+	value = list->current->value;
+	list->current->value = list->current->next->value;
+	list->current->next->value = value;
 }
 
-void	ft_push(t_stack **dest, t_stack **src)
+void	rotate(t_double_linked_list *list)
 {
-	if (!*src)
+	if (list->count == 0)
 		return ;
-	*dest = push_stack(*dest, (*src)->value);
-	*src = pop_stack(*src);
+	list->current = list->current->next;
 }
 
-void	ft_rotate(t_stack *stack)
+void	reverse_rotate(t_double_linked_list *list)
 {
-	int	tmp;
-
-	if (!stack || ft_strlen_stack(stack) <= 1)
+	if (list->count == 0)
 		return ;
-	tmp = stack->value;
-	while (stack->next)
-	{
-		stack->value = stack->next->value;
-		stack = stack->next;
-	}
-	stack->value = tmp;
+	list->current = list->current->prev;
 }
 
-void	ft_reverse_rotate(t_stack *stack)
+void	push(t_double_linked_list *src, t_double_linked_list *dst)
 {
-	t_stack	*element;
-	t_stack	*stack_size;
-	int		*tmp;
-	int		i;
-	int		size;
-
-	if (!stack || ft_strlen_stack(stack) <= 1)
+	if (src->count == 0)
 		return ;
-	if (ft_strlen_stack(stack) == 2)
-	{
-		ft_swap(stack);
-		return ;
-	}
-	if (!(tmp = ft_calloc(ft_strlen_stack(stack), sizeof(int))))
-		exit(EXIT_FAILURE);
-	i = -1;
-	tmp[++i] = stack->value;
-	element = stack->next;
-	stack_size = element->next;
-	while (element->next)
-	{
-		tmp[++i] = element->value;
-		element = element->next;
-	}
-	tmp[++i] = element->value;
-	stack->value = tmp[i];
-	size = ft_strlen_stack(stack_size);
-	stack = stack->next;
-	i = -1;
-	while (++i < size)
-	{
-		stack->value = tmp[i];
-		stack = stack->next;
-	}
-	stack->value = tmp[i];
-	free(tmp);
+	insert(dst, remove_first(src));
 }

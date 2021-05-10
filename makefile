@@ -6,7 +6,7 @@
 #    By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/04 15:34:54 by gpladet           #+#    #+#              #
-#    Updated: 2021/05/08 15:45:20 by gpladet          ###   ########.fr        #
+#    Updated: 2021/05/10 16:05:19 by gpladet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,11 +26,11 @@ PATH_OBJ_SWAP = objs_swap/
 PATH_LIBFT = libft
 
 # List of sources
-SRCS_CHECKER = check.c main.c operations.c print.c read.c stack.c utils.c
+SRCS_CHECKER = check.c display.c list.c main.c operations.c read.c utils.c
 OBJS_CHECKER = ${addprefix ${PATH_OBJ_CHECKER}, ${SRCS_CHECKER:.c=.o}}
 INCS_CHECKER = ${addprefix ${PATH_INC_CHECKER}, header.h}
 
-SRCS_SWAP = check.c display.c list.c main.c operations.c
+SRCS_SWAP = check.c display.c list.c main.c operations.c sort.c
 OBJS_SWAP = ${addprefix ${PATH_OBJ_SWAP}, ${SRCS_SWAP:.c=.o}}
 INCS_SWAP = ${addprefix ${PATH_INC_SWAP}, header.h}
 

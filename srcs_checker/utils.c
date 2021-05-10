@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpladet <gpladet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:48:30 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/25 15:22:30 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/10 15:43:09 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	*ft_realloc(void *ptr, size_t size)
 	{
 		new = ft_calloc(size, sizeof(char));
 		if (!new)
-			error_message(ERROR_CALLOC);
+			exit(EXIT_FAILURE);
 		return (new);
 	}
 	if (size == 0)
@@ -83,7 +83,7 @@ void	*ft_realloc(void *ptr, size_t size)
 	}
 	new = ft_calloc(size, sizeof(char));
 	if (!new)
-		error_message(ERROR_CALLOC);
+		exit(EXIT_FAILURE);
 	ft_strcpy(new, ptr);
 	free(ptr);
 	return (new);

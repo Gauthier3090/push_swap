@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:09:41 by gpladet           #+#    #+#             */
-/*   Updated: 2021/04/21 15:08:50 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/10 16:47:56 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,58 +18,69 @@
 
 # define TRUE 1
 # define FALSE 0
-# define ERROR_CALLOC "Dynamic allocation has failed"
 
-typedef struct s_stack
+typedef struct s_double_linked_list_node
 {
-	int				value;
-	struct s_stack	*next;
-}					t_stack;
+	int									value;
+	struct s_double_linked_list_node	*next;
+	struct s_double_linked_list_node	*prev;
+}				t_double_linked_list_node;
+
+typedef struct s_double_linked_list
+{
+	int									count;
+	struct s_double_linked_list_node	*current;
+}				t_double_linked_list;
 
 /*
 ** check.c
 */
-int					check_int(char **tab);
-int					check_duplicate(char **tab, int i, int j);
-int					check_args(char **argv);
-void				free_tab(char **tab);
+int							check_args(char **argv);
+
+/*
+** display.c
+*/
+void						display_list_prev(t_double_linked_list *list);
+void						display_list_next(t_double_linked_list *list);
+void						display_lists(t_double_linked_list *list_a,
+								t_double_linked_list *list_b);
+
+/*
+** list.c
+*/
+t_double_linked_list		*new_list(void);
+t_double_linked_list_node	*new_node(char *value);
+void						insert(t_double_linked_list *list,
+								t_double_linked_list_node *new_node);
+t_double_linked_list_node	*remove_first(t_double_linked_list *list);
+void						free_list(t_double_linked_list *list);
 
 /*
 ** operations.c
 */
-void				ft_swap(t_stack *stack);
-void				ft_push(t_stack **dest, t_stack **src);
-void				ft_rotate(t_stack *stack);
-void				ft_reverse_rotate(t_stack *stack);
-
-/*
-** print.c
-*/
-void				error_message(char *message);
-void				display_stack(t_stack *a, t_stack *b);
+void						swap(t_double_linked_list *list);
+void						rotate(t_double_linked_list *list);
+void						reverse_rotate(t_double_linked_list *list);
+void						push(t_double_linked_list *src,
+								t_double_linked_list *dst);
 
 /*
 ** read.c
 */
-int					getinput(char **line);
-int					ft_operations(char *line, t_stack **a, t_stack **b);
-
-/*
-** stack.c
-*/
-t_stack				*free_stack(t_stack *stack);
-t_stack				*push_stack(t_stack *stack, int value);
-t_stack				*pop_stack(t_stack *stack);
-void				print_stack(t_stack *stack);
-int					ft_strlen_stack(t_stack *stack);
+int							getinput(char **line);
+int							list_operations(char *line,
+								t_double_linked_list *list_a,
+								t_double_linked_list *list_b);
+int							sorted_list(t_double_linked_list *list_a,
+								t_double_linked_list *list_b);
 
 /*
 ** utils.c
 */
-long				ft_atol(const char *str);
-int					ft_strcmp(const char *s1, const char *s2);
-int					ft_whitespace(const char c);
-char				*ft_strcpy(char *dest, char *src);
-void				*ft_realloc(void *ptr, size_t size);
+long						ft_atol(const char *str);
+int							ft_strcmp(const char *s1, const char *s2);
+int							ft_whitespace(const char c);
+char						*ft_strcpy(char *dest, char *src);
+void						*ft_realloc(void *ptr, size_t size);
 
 #endif

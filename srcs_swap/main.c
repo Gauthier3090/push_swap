@@ -6,20 +6,11 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 17:51:59 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/09 15:02:53 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/10 15:39:12 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_swap/header.h"
-
-// Faire une fonction qui trouve le chiffre le plus petit de la stack A
-// Mettre le plus petit chiffre en tete de liste de A
-// Push le plus petit chiffre dans la liste B
-// Garder les deux plus grands nombres dans la liste A
-// Remettre la liste de B dans la liste A
-// Choisir s'il faut faire un rotate ou un reverse rotate
-// Mettre le chiffre le plus petit dans la stack B
-// Repeter l'operation
 
 void	free_tab(char **tab)
 {
@@ -98,11 +89,7 @@ int	main(int argc, char **argv)
 		insert(list_a, node);
 		i -= 1;
 	}
-	display_list_next(list_a);
-	ft_putchar_fd('\n', 1);
-	display_list_next(list_b);
-	free_list(list_a);
-	free_list(list_b);
+	sort_list(list_a, list_b);
 	if (is_malloc)
 		free_tab(argv);
 }

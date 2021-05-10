@@ -5,92 +5,71 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/25 12:11:20 by gpladet           #+#    #+#             */
-/*   Updated: 2021/04/22 18:40:33 by gpladet          ###   ########.fr       */
+/*   Created: 2021/05/08 15:37:22 by gpladet           #+#    #+#             */
+/*   Updated: 2021/05/10 15:42:42 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_checker/header.h"
 
-int 	check_int(char **tab)
+int	check_int(char *value)
 {
 	long	number;
-	int		i;
 
-	i = -1;
-	while (tab[++i])
-	{
-		number = ft_atol(tab[i]);
-		if (number < INT_MIN || number > INT_MAX)
-			return (FALSE);
-	}
+	number = ft_atol(value);
+	if (number < INT_MIN || number > INT_MAX)
+		return (FALSE);
 	return (TRUE);
 }
 
-int	check_duplicate(char **tab, int i, int j)
+int	check_duplicate(char **argv, int i, int j)
 {
 	int		tmp;
 	long	number;
 	long	number2;
 
 	tmp = j;
-	while (tab[++i])
+	while (argv[i])
 	{
 		j = tmp;
-		while (tab[++j])
+		while (argv[j])
 		{
 			if (i != j)
 			{
-				number = ft_atol(tab[i]);
-				number2 = ft_atol(tab[j]);
+				number = ft_atol(argv[i]);
+				number2 = ft_atol(argv[j]);
 				if (number == number2)
 					return (FALSE);
 			}
+			j++;
 		}
+		i++;
 	}
 	return (TRUE);
 }
 
-void	free_tab(char **tab)
-{
-	int	i;
-
-	i = -1;
-	while (tab[++i])
-		free(tab[i]);
-	free(tab);
-}
-
 int	check_args(char **argv)
 {
-	int		i;
-	int		j;
-	int		k;
-	char	**tab;
+	int	i;
+	int	j;
 
-	i = 0;
-	while (argv[++i])
+	i = 1;
+	while (argv[i])
 	{
-		tab = ft_split(argv[i], ' ');
-		if (!tab)
-			error_message(ERROR_CALLOC);
-		j = -1;
-		while (tab[++j])
+		j = 0;
+		if (argv[i][j] == '-' || argv[i][j] == '+')
+			j++;
+		while (argv[i][j])
 		{
-			k = -1;
-			while (tab[j][++k])
-			{
-				if (tab[j][k] == '-' || tab[j][k] == '+')
-					k++;
-				if (!ft_isdigit(tab[j][k]))
-					return (FALSE);
-				if (!(check_int(tab)))
-					return (FALSE);
-			}
+			if (!ft_isdigit(argv[i][j]))
+				return (FALSE);
+			j++;
 		}
-		free_tab(tab);
+		if (!(check_int(argv[i])))
+			return (FALSE);
+		i++;
 	}
-	if (!(check_duplicate(argv, 0, 0)))
+	if (!(check_duplicate(argv, 1, 2)))
 		return (FALSE);
 	return (TRUE);
 }

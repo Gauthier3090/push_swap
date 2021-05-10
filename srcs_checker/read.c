@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:59:36 by gpladet           #+#    #+#             */
-/*   Updated: 2021/03/29 14:34:42 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/10 16:42:56 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	getinput(char **line)
 	buffer = 0;
 	*line = ft_calloc(2, sizeof(char));
 	if (!(*line))
-		error_message(ERROR_CALLOC);
+		exit(EXIT_FAILURE);
 	i = -1;
 	count = 1;
 	ret = 0;
@@ -41,59 +41,76 @@ int	getinput(char **line)
 	return (1);
 }
 
-int	ft_operations_more(char *line, t_stack **a, t_stack **b)
+int	list_operations_more(char *line, t_double_linked_list *list_a,
+		t_double_linked_list *list_b)
 {
-	if (!(ft_strcmp("rr", line)))
+	if (!ft_strcmp("rr", line))
 	{
-		ft_rotate(*a);
-		ft_rotate(*b);
+		rotate(list_a);
+		rotate(list_b);
 		return (TRUE);
 	}
-	else if (!(ft_strcmp("rra", line)))
+	else if (!ft_strcmp("rra", line))
 	{
-		ft_reverse_rotate(*a);
+		reverse_rotate(list_a);
 		return (TRUE);
 	}
-	else if (!(ft_strcmp("rrb", line)))
+	else if (!ft_strcmp("rrb", line))
 	{
-		ft_reverse_rotate(*b);
+		reverse_rotate(list_b);
 		return (TRUE);
 	}
-	else if (!(ft_strcmp("rrr", line)))
+	else if (!ft_strcmp("rrr", line))
 	{
-		ft_reverse_rotate(*a);
-		ft_reverse_rotate(*b);
+		reverse_rotate(list_a);
+		reverse_rotate(list_b);
 		return (TRUE);
 	}
 	return (FALSE);
 }
 
-int	ft_operations(char *line, t_stack **a, t_stack **b)
+int	list_operations(char *line, t_double_linked_list *list_a,
+		t_double_linked_list *list_b)
 {
 	if (!ft_strcmp("sa", line))
-		ft_swap(*a);
+		swap(list_a);
 	else if (!ft_strcmp("sb", line))
-		ft_swap(*b);
+		swap(list_b);
 	else if (!ft_strcmp("ss", line))
 	{
-		ft_swap(*a);
-		ft_swap(*b);
+		swap(list_a);
+		swap(list_b);
 	}
 	else if (!ft_strcmp("pa", line))
-		ft_push(a, b);
+		push(list_b, list_a);
 	else if (!ft_strcmp("pb", line))
-		ft_push(b, a);
-	else if (!(ft_strcmp("ra", line)))
-		ft_rotate(*a);
-	else if (!(ft_strcmp("rb", line)))
-		ft_rotate(*b);
-	else if (ft_operations_more(line, a, b))
+		push(list_a, list_b);
+	else if (!ft_strcmp("ra", line))
+		rotate(list_a);
+	else if (!ft_strcmp("rb", line))
+		rotate(list_b);
+	else if (list_operations_more(line, list_a, list_b))
 		return (TRUE);
 	else
-	{
-		free(line);
-		ft_putendl_fd("Error", 1);
 		return (FALSE);
+	return (TRUE);
+}
+
+int	sorted_list(t_double_linked_list *list_a, t_double_linked_list *list_b)
+{
+	t_double_linked_list_node	*tmp;
+	int							i;
+
+	if (list_b->count != 0)
+		return (FALSE);
+	tmp = list_a->current->next;
+	i = 0;
+	while (i < list_a->count)
+	{
+		if (list_a->current->value > tmp->value)
+			return (FALSE);
+		i += 1;
+		tmp = tmp->next;
 	}
 	return (TRUE);
 }
