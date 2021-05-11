@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 13:47:08 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/10 16:35:35 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/11 17:37:28 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	get_position_min(t_double_linked_list *list)
 }
 
 void	execute_operations(t_double_linked_list *list,
-			int pos_left, int pos_right)
+			int pos_left, int pos_right, int min)
 {
 	if (pos_left == 0 && pos_right == 0)
 		return ;
@@ -40,8 +40,11 @@ void	execute_operations(t_double_linked_list *list,
 	{
 		while (pos_right)
 		{
-			rotate(list);
-			ft_putendl_fd("ra", 1);
+			if (list->current->value != min)
+			{
+				rotate(list);
+				ft_putendl_fd("ra", 1);
+			}
 			pos_right -= 1;
 		}
 	}
@@ -77,7 +80,7 @@ void	operations(t_double_linked_list *list, int min)
 		position_left += 1;
 		tmp_prev = tmp_prev->prev;
 	}
-	execute_operations(list, position_left, position_right);
+	execute_operations(list, position_left, position_right, min);
 }
 
 void	sort_list(t_double_linked_list *list_a, t_double_linked_list *list_b)
