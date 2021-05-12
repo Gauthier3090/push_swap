@@ -6,13 +6,13 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 13:47:08 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/11 17:37:28 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/12 14:50:43 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_swap/header.h"
 
-int	get_position_min(t_double_linked_list *list)
+int	get_position_min(t_double_linked_list *list, int length)
 {
 	int							min;
 	int							i;
@@ -21,7 +21,7 @@ int	get_position_min(t_double_linked_list *list)
 	tmp = list->current;
 	min = INT_MAX;
 	i = 0;
-	while (i < list->count)
+	while (i < length)
 	{
 		if (min > tmp->value)
 			min = tmp->value;
@@ -87,9 +87,14 @@ void	sort_list(t_double_linked_list *list_a, t_double_linked_list *list_b)
 {
 	int	position;
 
+	if (list_a->count >= 20)
+	{
+		sort_list_chunk(list_a, list_b);
+		return ;
+	}
 	while (list_a->count != 2)
 	{
-		position = get_position_min(list_a);
+		position = get_position_min(list_a, list_a->count);
 		operations(list_a, position);
 		push(list_a, list_b);
 		ft_putendl_fd("pb", 1);

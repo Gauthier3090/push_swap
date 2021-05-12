@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:51:39 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/10 16:48:29 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/12 17:45:16 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 # define TRUE 1
 # define FALSE 0
+# define CHUNK 20
 
 typedef struct s_double_linked_list_node
 {
@@ -68,6 +69,14 @@ void						push(t_double_linked_list *src,
 ** sort.c
 */
 void						sort_list(t_double_linked_list *list_a,
+								t_double_linked_list *list_b);
+int							get_position_min(t_double_linked_list *list, int length);
+void						operations(t_double_linked_list *list, int min);
+
+/*
+** sort2.c
+*/
+void						sort_list_chunk(t_double_linked_list *list_a,
 								t_double_linked_list *list_b);
 
 #endif
