@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/10 13:47:08 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/12 14:50:43 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/12 22:07:49 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	execute_operations(t_double_linked_list *list,
 			if (list->current->value != min)
 			{
 				rotate(list);
-				ft_putendl_fd("ra", 1);
+				ft_putendl_fd("rb", 1);
 			}
 			pos_right -= 1;
 		}
@@ -53,7 +53,7 @@ void	execute_operations(t_double_linked_list *list,
 		while (pos_left)
 		{
 			reverse_rotate(list);
-			ft_putendl_fd("rra", 1);
+			ft_putendl_fd("rrb", 1);
 			pos_left -= 1;
 		}
 	}

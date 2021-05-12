@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 14:28:41 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/12 17:55:21 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/12 18:46:42 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ void	sort_list_chunk(t_double_linked_list *list_a,
 	int	position_max;
 
 	sort_begin_list(list_a, list_b);
-	display_lists(list_a, list_b);
 	parse_number(list_a, list_b);
 	position_max = get_position_max(list_b, list_b->count);
 	operations(list_b, position_max);
