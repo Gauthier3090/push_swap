@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 00:09:21 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/14 23:23:34 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/15 00:13:12 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,9 @@ void	execute_operations(t_double_linked_list *list_a,
 		free(line);
 	}
 	free(line);
-	if (sorted_list(list_a, list_b))
-		ft_putendl_fd("OK", 1);
-	else
-		ft_putendl_fd("KO", 1);
+	sorted_list(list_a, list_b);
 	free_list(list_a);
+	free_list(list_b);
 }
 
 int	main(int argc, char **argv)
@@ -120,7 +118,6 @@ int	main(int argc, char **argv)
 		i -= 1;
 	}
 	execute_operations(list_a, list_b);
-	free_list(list_b);
 	if (is_malloc)
 		free_tab(argv);
 }
