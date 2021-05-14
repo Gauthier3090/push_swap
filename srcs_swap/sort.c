@@ -5,110 +5,69 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/10 13:47:08 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/12 22:07:49 by gpladet          ###   ########.fr       */
+/*   Created: 2021/05/12 14:28:41 by gpladet           #+#    #+#             */
+/*   Updated: 2021/05/14 15:18:57 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_swap/header.h"
 
-int	get_position_min(t_double_linked_list *list, int length)
+void	find_position(t_double_linked_list *list_b, t_double_linked_list_node *node)
 {
-	int							min;
-	int							i;
-	t_double_linked_list_node	*tmp;
+	int	max;
+	int	min;
 
-	tmp = list->current;
-	min = INT_MAX;
-	i = 0;
-	while (i < length)
+	min = get_position_min(list_b, list_b->count);
+	max = get_position_max(list_b, list_b->count);
+	if (node->value > max)
 	{
-		if (min > tmp->value)
-			min = tmp->value;
-		tmp = tmp->next;
-		i += 1;
+		while (list_b->current->value != max)
+			reverse_or_rotate(list_b, max);
 	}
-	return (min);
+	else if (node->value < min)
+	{
+		while (list_b->current->value != min)
+			reverse_or_rotate(list_b, min);
+	}
 }
 
-void	execute_operations(t_double_linked_list *list,
-			int pos_left, int pos_right, int min)
+void	insert_sort(t_double_linked_list *list_b, t_double_linked_list *list_a)
 {
-	if (pos_left == 0 && pos_right == 0)
-		return ;
-	if (pos_left > pos_right)
+	if (list_b->count == 0)
+		push_b(list_a, list_b);
+	else if (list_b->count == 1)
 	{
-		while (pos_right)
+		if (list_a->current->value > list_b->current->value)
+			push_b(list_a, list_b);
+		else
 		{
-			if (list->current->value != min)
-			{
-				rotate(list);
-				ft_putendl_fd("rb", 1);
-			}
-			pos_right -= 1;
+			push_b(list_a, list_b);
+			swap_b(list_b);
 		}
 	}
 	else
 	{
-		while (pos_left)
-		{
-			reverse_rotate(list);
-			ft_putendl_fd("rrb", 1);
-			pos_left -= 1;
-		}
+		find_position(list_b, list_a->current);
+		push_b(list_a, list_b);
 	}
 }
 
-void	operations(t_double_linked_list *list, int min)
+void	reset_list_b(t_double_linked_list *list_b)
 {
-	int							position_left;
-	int							position_right;
-	t_double_linked_list_node	*tmp_next;
-	t_double_linked_list_node	*tmp_prev;
+	int	max;
 
-	tmp_prev = list->current;
-	tmp_next = list->current;
-	position_right = 0;
-	while (tmp_next->value != min)
-	{
-		position_right += 1;
-		tmp_next = tmp_next->next;
-	}
-	position_left = 0;
-	while (tmp_prev->value != min)
-	{
-		position_left += 1;
-		tmp_prev = tmp_prev->prev;
-	}
-	execute_operations(list, position_left, position_right, min);
+	max = get_position_max(list_b, list_b->count);
+	while (list_b->current->value != max)
+		reverse_or_rotate(list_b, max);
 }
 
 void	sort_list(t_double_linked_list *list_a, t_double_linked_list *list_b)
 {
-	int	position;
-
-	if (list_a->count >= 20)
-	{
-		sort_list_chunk(list_a, list_b);
-		return ;
-	}
-	while (list_a->count != 2)
-	{
-		position = get_position_min(list_a, list_a->count);
-		operations(list_a, position);
-		push(list_a, list_b);
-		ft_putendl_fd("pb", 1);
-	}
-	if (list_a->current->value > list_a->current->next->value)
-	{
-		swap(list_a);
-		ft_putendl_fd("sa", 1);
-	}
-	while (list_b->count)
-	{
-		push(list_b, list_a);
-		ft_putendl_fd("pa", 1);
-	}
+	insert_sort(list_b, list_a);
+	insert_sort(list_b, list_a);
+	insert_sort(list_b, list_a);
+	reset_list_b(list_b);
+	display_lists(list_a, list_b);
 	free_list(list_a);
 	free_list(list_b);
 }

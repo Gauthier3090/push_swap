@@ -5,12 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/05/12 14:28:41 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/12 18:46:42 by gpladet          ###   ########.fr       */
+/*   Created: 2021/05/14 15:05:00 by gpladet           #+#    #+#             */
+/*   Updated: 2021/05/14 15:21:57 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_swap/header.h"
+
+int	get_position_min(t_double_linked_list *list, int length)
+{
+	int							min;
+	int							i;
+	t_double_linked_list_node	*tmp;
+
+	tmp = list->current;
+	min = INT_MAX;
+	i = 0;
+	while (i < length)
+	{
+		if (min > tmp->value)
+			min = tmp->value;
+		tmp = tmp->next;
+		i += 1;
+	}
+	return (min);
+}
 
 int	get_position_max(t_double_linked_list *list, int length)
 {
@@ -31,83 +50,50 @@ int	get_position_max(t_double_linked_list *list, int length)
 	return (max);
 }
 
-void	sort_begin_list(t_double_linked_list *list_a,
-			t_double_linked_list *list_b)
+void	execute_operations(t_double_linked_list *list_b, int nb_rotate, int nb_reverse, int value)
 {
-	int	position;
-	int	nb_rotate;
-	int	length;
-
-	if (CHUNK > list_a->count)
-		length = list_a->count;
-	else
-		length = CHUNK;
-	while (length)
+	if (nb_rotate == 0 && nb_reverse == 0)
+		return ;
+	if (nb_reverse > nb_rotate)
 	{
-		nb_rotate = 0;
-		position = get_position_min(list_a, length);
-		while (list_a->current->value != position)
-		{
-			nb_rotate += 1;
-			rotate(list_a);
-			ft_putendl_fd("ra", 1);
-		}
-		push(list_a, list_b);
-		ft_putendl_fd("pb", 1);
 		while (nb_rotate)
 		{
-			reverse_rotate(list_a);
-			ft_putendl_fd("rra", 1);
+			if (list_b->current->value != value)
+				rotate_b(list_b);
 			nb_rotate -= 1;
 		}
-		length -= 1;
 	}
-}
-
-void	parse_number(t_double_linked_list *list_a, t_double_linked_list *list_b)
-{
-	int							i;
-	int							j;
-	int							position_nb;
-	t_double_linked_list_node	*tmp;
-
-	while (list_a->count)
+	else
 	{
-		i = 0;
-		tmp = list_b->current;
-		position_nb = get_position_max(list_b, list_b->count);
-		while (i < list_a->current->value)
+		while (nb_reverse)
 		{
-			j = 0;
-			while (j < list_b->count)
-			{
-				if (i == tmp->value)
-					position_nb = tmp->value;
-				tmp = tmp->next;
-				j += 1;
-			}
-			i += 1;
+			if (list_b->current->value != value)
+				reverse_rotate_b(list_b);
+			nb_reverse -= 1;
 		}
-		operations(list_b, position_nb);
-		push(list_a, list_b);
-		ft_putendl_fd("pb", 1);
 	}
 }
 
-void	sort_list_chunk(t_double_linked_list *list_a,
-			t_double_linked_list *list_b)
+void	reverse_or_rotate(t_double_linked_list *list_b, int value)
 {
-	int	position_max;
+	int							nb_reverse;
+	int							nb_rotate;
+	t_double_linked_list_node	*tmp_next;
+	t_double_linked_list_node	*tmp_prev;
 
-	sort_begin_list(list_a, list_b);
-	parse_number(list_a, list_b);
-	position_max = get_position_max(list_b, list_b->count);
-	operations(list_b, position_max);
-	while (list_b->count)
+	tmp_prev = list_b->current;
+	tmp_next = list_b->current;
+	nb_rotate = 0;
+	while (tmp_next->value != value)
 	{
-		push(list_b, list_a);
-		ft_putendl_fd("pa", 1);
+		nb_rotate += 1;
+		tmp_next = tmp_next->next;
 	}
-	free_list(list_a);
-	free_list(list_b);
+	nb_reverse = 0;
+	while (tmp_prev->value != value)
+	{
+		nb_reverse += 1;
+		tmp_prev = tmp_prev->next;
+	}
+	execute_operations(list_b, nb_rotate, nb_reverse, value);
 }
