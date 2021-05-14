@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:51:39 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/14 15:15:13 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/14 17:09:24 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 # define TRUE 1
 # define FALSE 0
-# define CHUNK 5
+# define CHUNK 25
 
 typedef struct s_double_linked_list_node
 {
@@ -32,6 +32,13 @@ typedef struct s_double_linked_list
 	int									count;
 	struct s_double_linked_list_node	*current;
 }				t_double_linked_list;
+
+typedef struct s_chunk
+{
+	int									remaining;
+	struct s_double_linked_list_node	*head;
+}				t_chunk;
+
 
 /*
 ** check.c
@@ -89,8 +96,9 @@ void						sort_list(t_double_linked_list *list_a, t_double_linked_list *list_b);
 /*
 ** sort2.c
 */
-int							get_position_min(t_double_linked_list *list, int length);
-int							get_position_max(t_double_linked_list *list, int length);
-void						reverse_or_rotate(t_double_linked_list *list_b, int value);
+int							get_min(int a, int b);
+int							get_min_value(t_double_linked_list_node *node, int length);
+int							get_max_value(t_double_linked_list_node *node, int length);
+void						reverse_or_rotate(t_double_linked_list *list, int value, int list_a);
 
 #endif

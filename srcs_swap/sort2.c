@@ -6,19 +6,26 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 15:05:00 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/14 15:21:57 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/14 17:00:21 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_swap/header.h"
 
-int	get_position_min(t_double_linked_list *list, int length)
+int	get_min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+int	get_min_value(t_double_linked_list_node *node, int length)
 {
 	int							min;
 	int							i;
 	t_double_linked_list_node	*tmp;
 
-	tmp = list->current;
+	tmp = node;
 	min = INT_MAX;
 	i = 0;
 	while (i < length)
@@ -31,13 +38,13 @@ int	get_position_min(t_double_linked_list *list, int length)
 	return (min);
 }
 
-int	get_position_max(t_double_linked_list *list, int length)
+int	get_max_value(t_double_linked_list_node *node, int length)
 {
 	int							max;
 	int							i;
 	t_double_linked_list_node	*tmp;
 
-	tmp = list->current;
+	tmp = node;
 	max = INT_MIN;
 	i = 0;
 	while (i < length)
@@ -50,7 +57,7 @@ int	get_position_max(t_double_linked_list *list, int length)
 	return (max);
 }
 
-void	execute_operations(t_double_linked_list *list_b, int nb_rotate, int nb_reverse, int value)
+void	execute_operations_b(t_double_linked_list *list_b, int nb_rotate, int nb_reverse, int value)
 {
 	if (nb_rotate == 0 && nb_reverse == 0)
 		return ;
@@ -74,15 +81,39 @@ void	execute_operations(t_double_linked_list *list_b, int nb_rotate, int nb_reve
 	}
 }
 
-void	reverse_or_rotate(t_double_linked_list *list_b, int value)
+void	execute_operations_a(t_double_linked_list *list_a, int nb_rotate, int nb_reverse, int value)
+{
+	if (nb_rotate == 0 && nb_reverse == 0)
+		return ;
+	if (nb_reverse > nb_rotate)
+	{
+		while (nb_rotate)
+		{
+			if (list_a->current->value != value)
+				rotate_a(list_a);
+			nb_rotate -= 1;
+		}
+	}
+	else
+	{
+		while (nb_reverse)
+		{
+			if (list_a->current->value != value)
+				reverse_rotate_a(list_a);
+			nb_reverse -= 1;
+		}
+	}
+}
+
+void	reverse_or_rotate(t_double_linked_list *list, int value, int list_a)
 {
 	int							nb_reverse;
 	int							nb_rotate;
 	t_double_linked_list_node	*tmp_next;
 	t_double_linked_list_node	*tmp_prev;
 
-	tmp_prev = list_b->current;
-	tmp_next = list_b->current;
+	tmp_prev = list->current;
+	tmp_next = list->current;
 	nb_rotate = 0;
 	while (tmp_next->value != value)
 	{
@@ -95,5 +126,8 @@ void	reverse_or_rotate(t_double_linked_list *list_b, int value)
 		nb_reverse += 1;
 		tmp_prev = tmp_prev->next;
 	}
-	execute_operations(list_b, nb_rotate, nb_reverse, value);
+	if (list_a)
+		execute_operations_a(list, nb_rotate, nb_reverse, value);
+	else
+		execute_operations_b(list, nb_rotate, nb_reverse, value);
 }
