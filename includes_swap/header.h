@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:51:39 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/14 23:32:36 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/14 23:59:48 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,13 +118,15 @@ void						solve_others(t_double_linked_list *list_a,
 /*
 ** sort.c
 */
-void						sort_list(t_double_linked_list *list_a,
+int							sorted_list(t_double_linked_list *list_a,
 								t_double_linked_list *list_b);
 int							get_min(int a, int b);
 int							get_min_value(t_double_linked_list_node *node,
 								int length);
 int							get_max_value(t_double_linked_list_node *node,
 								int length);
+void						sort_list(t_double_linked_list *list_a,
+								t_double_linked_list *list_b);
 
 /*
 ** sort2.c

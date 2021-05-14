@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/14 22:22:06 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/14 23:37:04 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/14 23:51:35 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	solve_others(t_double_linked_list *list_a, t_double_linked_list *list_b)
 	t_quarter	quarter;
 	int			length;
 	int			i;
-	int			max;
 
 	length = list_a->count;
 	quarter.first = (find_median(list_a, 2) / 4) * 7;
