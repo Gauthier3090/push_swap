@@ -6,7 +6,7 @@
 #    By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/04 15:34:54 by gpladet           #+#    #+#              #
-#    Updated: 2021/05/14 15:16:35 by gpladet          ###   ########.fr        #
+#    Updated: 2021/05/14 22:35:38 by gpladet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,9 @@ SRCS_CHECKER = check.c display.c list.c main.c operations.c read.c utils.c
 OBJS_CHECKER = ${addprefix ${PATH_OBJ_CHECKER}, ${SRCS_CHECKER:.c=.o}}
 INCS_CHECKER = ${addprefix ${PATH_INC_CHECKER}, header.h}
 
-SRCS_SWAP = check.c display.c list.c main.c operations_stack_a.c \
-operations_stack_b.c operations.c sort.c sort2.c
+SRCS_SWAP = check.c display.c list.c main.c median.c operations_stack_a.c \
+operations_stack_b.c operations.c solve_5_or_less.c solve_100_or_less.c \
+solve_others.c sort.c sort2.c
 OBJS_SWAP = ${addprefix ${PATH_OBJ_SWAP}, ${SRCS_SWAP:.c=.o}}
 INCS_SWAP = ${addprefix ${PATH_INC_SWAP}, header.h}
 

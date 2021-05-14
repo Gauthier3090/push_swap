@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:51:39 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/14 17:09:24 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/14 23:32:36 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 # define TRUE 1
 # define FALSE 0
-# define CHUNK 25
+# define CHUNK 50
 
 typedef struct s_double_linked_list_node
 {
@@ -33,12 +33,13 @@ typedef struct s_double_linked_list
 	struct s_double_linked_list_node	*current;
 }				t_double_linked_list;
 
-typedef struct s_chunk
+typedef struct s_quarter
 {
-	int									remaining;
-	struct s_double_linked_list_node	*head;
-}				t_chunk;
-
+	int									first;
+	int									second;
+	int									third;
+	int									four;
+}				t_quarter;
 
 /*
 ** check.c
@@ -64,9 +65,16 @@ t_double_linked_list_node	*remove_first(t_double_linked_list *list);
 void						free_list(t_double_linked_list *list);
 
 /*
+** median.c
+*/
+int							find_median(t_double_linked_list *list_a,
+								int div_median);
+
+/*
 ** operations_stack_a.c
 */
-void						push_a(t_double_linked_list *list_a, t_double_linked_list *list_b);
+void						push_a(t_double_linked_list *list_a,
+								t_double_linked_list *list_b);
 void						swap_a(t_double_linked_list *list_a);
 void						rotate_a(t_double_linked_list *list_a);
 void						reverse_rotate_a(t_double_linked_list *list_a);
@@ -74,7 +82,8 @@ void						reverse_rotate_a(t_double_linked_list *list_a);
 /*
 ** operations_stack_b.c
 */
-void						push_b(t_double_linked_list *list_a, t_double_linked_list *list_b);
+void						push_b(t_double_linked_list *list_a,
+								t_double_linked_list *list_b);
 void						swap_b(t_double_linked_list *list_b);
 void						rotate_b(t_double_linked_list *list_b);
 void						reverse_rotate_b(t_double_linked_list *list_b);
@@ -89,16 +98,38 @@ void						push(t_double_linked_list *src,
 								t_double_linked_list *dst);
 
 /*
+** solve_5_or_less.c
+*/
+void						solve_5_or_less(t_double_linked_list *list_a,
+								t_double_linked_list *list_b);
+
+/*
+** solve_100_or_less.c
+*/
+void						solve_100_or_less(t_double_linked_list *list_a,
+								t_double_linked_list *list_b);
+
+/*
+** solve_others.c
+*/
+void						solve_others(t_double_linked_list *list_a,
+								t_double_linked_list *list_b);
+
+/*
 ** sort.c
 */
-void						sort_list(t_double_linked_list *list_a, t_double_linked_list *list_b);
+void						sort_list(t_double_linked_list *list_a,
+								t_double_linked_list *list_b);
+int							get_min(int a, int b);
+int							get_min_value(t_double_linked_list_node *node,
+								int length);
+int							get_max_value(t_double_linked_list_node *node,
+								int length);
 
 /*
 ** sort2.c
 */
-int							get_min(int a, int b);
-int							get_min_value(t_double_linked_list_node *node, int length);
-int							get_max_value(t_double_linked_list_node *node, int length);
-void						reverse_or_rotate(t_double_linked_list *list, int value, int list_a);
+void						reverse_or_rotate(t_double_linked_list *list,
+								int value, int list_a);
 
 #endif

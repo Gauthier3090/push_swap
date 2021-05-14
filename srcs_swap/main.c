@@ -6,15 +6,9 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 17:51:59 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/13 15:29:32 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/14 23:25:41 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//Faire une fonction qui trie les n premiers nombres de la liste (tete de liste plus petit nombre)
-//Mettre la liste triee dans la stack B
-//A partir du deuxieme chunk, se situe entre x et y et faire des reverse rotate et reverse
-//Repeter l operation jusqu a ce que la stack A soit vide
-//Remettre la stack B dans A
 
 #include "../includes_swap/header.h"
 
