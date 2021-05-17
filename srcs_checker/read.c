@@ -6,7 +6,7 @@
 /*   By: gpladet <gpladet@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:59:36 by gpladet           #+#    #+#             */
-/*   Updated: 2021/05/15 00:13:01 by gpladet          ###   ########.fr       */
+/*   Updated: 2021/05/15 11:33:14 by gpladet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,10 @@ int	sorted_list(t_double_linked_list *list_a, t_double_linked_list *list_b)
 	int							i;
 
 	if (list_b->count != 0)
+	{
+		ft_putendl_fd("KO", 1);
 		return (FALSE);
+	}
 	tmp = list_a->current;
 	i = 0;
 	while (i < list_a->count - 1)
